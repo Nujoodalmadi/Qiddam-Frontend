@@ -58,6 +58,7 @@ export const login = (userData, navigation) => {
 };
 
 export const signup = (userData, navigation) => {
+  console.log(userData);
   return async dispatch => {
     try {
       await axios.post("http://127.0.0.1:8000/api/signup/", userData);

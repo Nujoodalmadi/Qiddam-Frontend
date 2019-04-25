@@ -1,26 +1,62 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View, Image, Content, ScrollView, Button } from "react-native";
+import { View, Image, ScrollView, FlatList } from "react-native";
 import styles from "../MyProfile/style";
 import * as actionCreators from "../../store/actions";
+import { ListItem } from "react-native-elements";
+import { Button, Text, Content, Card, CardItem, Container } from "native-base";
 
 class MyProfile extends Component {
-  componentDidMount() {
-    this.props.fetchMyProfile();
-  }
-
   static navigationOptions = {
     header: null
   };
 
   componentDidMount() {
-    this.props.userActivities(this.props.myProfile.user.username);
+    this.props.userActivities(this.props.profile.user.username);
   }
 
+  state = {
+    isFetching: false
+  };
+
+  async onRefresh() {
+    console.log("refreshing");
+    this.setState({ isFetching: true });
+    await this.props.fetchMyProfile(), this.setState({ isFetching: false });
+  }
+
+  // keyExtractor = (item, index) => index.toString();
+
+  // renderItem = ({ item }) => (
+  //   <ListItem
+  //     title={item.activity.title}
+  //     subtitle={item.status}
+  //     leftAvatar={
+  //       item.activity.orgnizer.img
+  //         ? { source: { uri: item.orgnizer.img } }
+  //         : {
+  //             source: {
+  //               uri:
+  //                 "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+  //             }
+  //           }
+  //     }
+  //     rightIcon={
+  //       <Image
+  //         style={styles.qiddam}
+  //         source={{
+  //           uri: "https://img.icons8.com/dusk/64/000000/forward-arrow.png"
+  //         }}
+  //       />
+  //     }
+  //   />
+  // );
+
   render() {
-    const myprofile = this.props.myProfile;
+    const profile = this.props.profile;
+    // const invites = this.props.profile.invites.map()
     return (
-      <ScrollView>
+      <ScrollView style={styles.pageView}>
         <View style={styles.container}>
           <View style={styles.header}>
             <Image
@@ -30,30 +66,43 @@ class MyProfile extends Component {
           </View>
           <Image
             style={styles.avatar}
-            source={{
-              uri: myprofile.img
-            }}
+            source={
+              profile.img
+                ? { uri: profile.img }
+                : {
+                    uri:
+                      "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+                  }
+            }
           />
         </View>
         <View style={styles.body}>
           <View style={styles.bodyContent}>
-            <Text style={styles.name}>{myprofile.user.username}</Text>
-            {/* <Text style={styles.info}>
-              {myprofile.user.fname}
-              {myprofile.gander}
-            </Text> */}
-            <Text style={styles.description}>
-              {myprofile.bio} {myprofile.user.date_of_birth}
+            <Text style={styles.name}>{profile.user.username}</Text>
+            <Text style={styles.info}>
+              {profile.user.first_name + " " + profile.user.last_name}
             </Text>
-
-            {/* <Button
-              // onPress={onPressLearnMore}
+            <Text style={styles.info}> {profile.bio} </Text>
+            <Text style={styles.description}>{profile.bio}</Text>
+            <Text style={styles.description}>
+              {profile.gender} {profile.date_of_birth}
+            </Text>
+            <Button
+              onPress={() => alert("HElloo.. am the update button")}
               title="Update"
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
-            /> */}
+            />
           </View>
         </View>
+
+        {/* <FlatList
+          onRefresh={() => this.onRefresh()}
+          refreshing={this.state.isFetching}
+          keyExtractor={this.keyExtractor}
+          data={profile.invites}
+          renderItem={this.renderItem}
+        /> */}
       </ScrollView>
     );
   }
@@ -65,7 +114,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  myProfile: state.authReducer.myprofile
+  profile: state.authReducer.myprofile
 });
 
 export default connect(

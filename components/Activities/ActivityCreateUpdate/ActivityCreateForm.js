@@ -52,10 +52,7 @@ class ActivityCreateForm extends Component {
     this.setState({ time: "12:23:00" });
     this.TimePicker.close();
   };
-  // setDate = dateSlice => {
 
-  //   this.setState({ date: dateSlice });
-  // };
   setCategory = newCategory => {
     this.setState({ chosenCategory: newCategory });
   };
@@ -148,7 +145,7 @@ class ActivityCreateForm extends Component {
                           placeholder="أولاد ولا بنات؟"
                           placeholderStyle={{ color: "#bfc6ea" }}
                           placeholderIconColor="#007aff"
-                          selectedValue={this.state.selectedGender}
+                          selectedValue={this.state.selectedGender} //??
                           onValueChange={this.onValueChangeGender}
                         >
                           <Picker.Item label="بنات" value="أنثى" />

@@ -27,9 +27,14 @@ class Profile extends Component {
             </View>
             <Image
               style={styles.avatar}
-              source={{
-                uri: profile.img
-              }}
+              source={
+                profile.img
+                  ? { uri: profile.img }
+                  : {
+                      uri:
+                        "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+                    }
+              }
             />
           </View>
           <View style={styles.body}>
