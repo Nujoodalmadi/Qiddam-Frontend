@@ -14,12 +14,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       };
-    case actionTypes.FUTCH_PROFILE:
+    case actionTypes.FETCH_PROFILE:
       return {
         ...state,
         profile: action.payload
       };
-    case actionTypes.FUTCH_MY_PROFILE:
+    case actionTypes.FETCH_MY_PROFILE:
       return {
         ...state,
         myprofile: action.payload

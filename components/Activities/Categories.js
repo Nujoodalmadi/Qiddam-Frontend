@@ -4,14 +4,13 @@ import {
   ImageBackground,
   Image,
   FlatList,
-  Header,
   Text,
   TouchableOpacity
 } from "react-native";
 import styles from "./styles";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-import { ListItem, Icon } from "react-native-elements";
+import { ListItem } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
 
 class Categories extends Component {

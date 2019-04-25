@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { ListItem } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
+import { Spinner } from "native-base";
 
 class ActivitiesList extends Component {
   static navigationOptions = {
@@ -81,7 +82,7 @@ class ActivitiesList extends Component {
 
   render() {
     if (!this.props.categoryActivities) {
-      return <Text>قاعد يحمّل</Text>;
+      return <Spinner />;
     } else {
       this.props.user
         ? (filterCategoryActivities = this.props.categoryActivities.filter(
