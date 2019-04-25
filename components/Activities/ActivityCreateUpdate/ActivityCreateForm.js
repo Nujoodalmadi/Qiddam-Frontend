@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { TouchableOpacity, Text, View } from "react-native";
 import TimePicker from "react-native-24h-timepicker";
-import * as actionCreators from "../../store/actions";
-import styles from "./styles";
+import * as actionCreators from "../../../store/actions";
+import styles from "../styles";
 import {
   Container,
   Content,
@@ -28,7 +28,7 @@ class ActivityCreateForm extends Component {
     headerBackground: (
       <Image
         style={styles.catHeader}
-        source={require("../../img/header.png")}
+        source={require("../../../img/header.png")}
       />
     ),
 
