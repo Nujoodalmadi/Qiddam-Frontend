@@ -61,6 +61,28 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
     backgroundColor: "#00BFFF"
+  },
+  inviteCard: {
+    alignSelf: "center",
+    width: "90%",
+    marginBottom: 1
+  },
+  pageView: {
+    backgroundColor: "white"
+  },
+  qiddam: {
+    width: 30,
+    height: 30
+  },
+  flatList: {
+    maxHeight: 200
+  },
+  qiddamWalla: {
+    fontSize: 20,
+    color: "#D9663D",
+    textAlign: "right",
+    marginRight: 14,
+    fontWeight: "bold"
   }
 });
 

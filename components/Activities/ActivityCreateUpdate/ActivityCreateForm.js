@@ -5,11 +5,8 @@ import TimePicker from "react-native-24h-timepicker";
 import * as actionCreators from "../../../store/actions";
 import styles from "../styles";
 import {
-  Container,
-  Content,
   Input,
   Icon,
-  Header,
   List,
   ListItem,
   Body,
@@ -17,9 +14,9 @@ import {
   Item,
   Button,
   DatePicker,
-  ActionSheet,
   Root,
-  Picker
+  Picker,
+  Spinner
 } from "native-base";
 import { Image, ImageBackground } from "react-native";
 
@@ -83,7 +80,7 @@ class ActivityCreateForm extends Component {
 
   render() {
     if (!this.props.categories) {
-      return <Text>قاعد يحمّل</Text>;
+      return <Spinner />;
     } else {
       return (
         <Root>

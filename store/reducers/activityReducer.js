@@ -33,6 +33,7 @@ const activities = (state = initialState, action) => {
 
     case actionTypes.FETCH_USER_ACTIVITIES:
       cat = action.payload.map(category => category.activities);
+
       console.log(cat);
 
     case actionTypes.CATCH_CATEGORY_ID:
@@ -41,12 +42,12 @@ const activities = (state = initialState, action) => {
         categoryID: action.payload
       };
 
-      //???
-      return {
-        ...state,
-        userActivities: cat
-      };
+    //???
 
+    // return {
+    //   ...state,
+    //   userActivities: cat
+    // };
     default:
       return state;
   }

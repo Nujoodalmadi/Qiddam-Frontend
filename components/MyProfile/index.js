@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Image, ScrollView, FlatList } from "react-native";
+import { View, Image, ScrollView } from "react-native";
 import styles from "../MyProfile/style";
 import * as actionCreators from "../../store/actions";
-import { ListItem } from "react-native-elements";
-import { Button, Text, Content, Card, CardItem, Container } from "native-base";
+import InvitesCard from "./InvitesCard";
+import { Button, Text } from "native-base";
 
 class MyProfile extends Component {
   static navigationOptions = {
@@ -15,48 +15,10 @@ class MyProfile extends Component {
     this.props.userActivities(this.props.profile.user.username);
   }
 
-  state = {
-    isFetching: false
-  };
-
-  async onRefresh() {
-    console.log("refreshing");
-    this.setState({ isFetching: true });
-    await this.props.fetchMyProfile(), this.setState({ isFetching: false });
-  }
-
-  // keyExtractor = (item, index) => index.toString();
-
-  // renderItem = ({ item }) => (
-  //   <ListItem
-  //     title={item.activity.title}
-  //     subtitle={item.status}
-  //     leftAvatar={
-  //       item.activity.orgnizer.img
-  //         ? { source: { uri: item.orgnizer.img } }
-  //         : {
-  //             source: {
-  //               uri:
-  //                 "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
-  //             }
-  //           }
-  //     }
-  //     rightIcon={
-  //       <Image
-  //         style={styles.qiddam}
-  //         source={{
-  //           uri: "https://img.icons8.com/dusk/64/000000/forward-arrow.png"
-  //         }}
-  //       />
-  //     }
-  //   />
-  // );
-
   render() {
     const profile = this.props.profile;
-    // const invites = this.props.profile.invites.map()
     return (
-      <ScrollView style={styles.pageView}>
+      <ScrollView scrollEnabled={false} style={styles.pageView}>
         <View style={styles.container}>
           <View style={styles.header}>
             <Image
@@ -66,14 +28,9 @@ class MyProfile extends Component {
           </View>
           <Image
             style={styles.avatar}
-            source={
-              profile.img
-                ? { uri: profile.img }
-                : {
-                    uri:
-                      "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
-                  }
-            }
+            source={{
+              uri: profile.img
+            }}
           />
         </View>
         <View style={styles.body}>
@@ -95,14 +52,10 @@ class MyProfile extends Component {
             />
           </View>
         </View>
-
-        {/* <FlatList
-          onRefresh={() => this.onRefresh()}
-          refreshing={this.state.isFetching}
-          keyExtractor={this.keyExtractor}
-          data={profile.invites}
-          renderItem={this.renderItem}
-        /> */}
+        <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
+        <View style={styles.flatList}>
+          <InvitesCard />
+        </View>
       </ScrollView>
     );
   }
@@ -110,7 +63,7 @@ class MyProfile extends Component {
 
 const mapDispatchToProps = dispatch => ({
   userActivities: name => dispatch(actionCreators.userActivities(name)),
-  fetchMyProfile: () => dispatch(actionCreators.fetchMyProfile())
+  fetchProfile: () => dispatch(actionCreators.fetchMyProfile())
 });
 
 const mapStateToProps = state => ({

@@ -3,8 +3,8 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 
 //Profile
-export const FUTCH_PROFILE = "FUTCH_PROFILE";
-export const FUTCH_MY_PROFILE = "FUTCH_MY_PROFILE";
+export const FETCH_PROFILE = "FETCH_PROFILE";
+export const FETCH_MY_PROFILE = "FETCH_MY_PROFILE";
 
 //Activities
 export const FETCH_ACTIVITIES = "FETCH_ACTIVITIES";

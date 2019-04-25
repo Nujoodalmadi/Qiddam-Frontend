@@ -50,7 +50,7 @@ export const login = (userData, navigation) => {
 
       await dispatch(fetchMyProfile());
 
-      navigation.navigate("MyProfile");
+      navigation.replace("MyProfile");
     } catch (error) {
       console.error(error);
     }
@@ -81,13 +81,13 @@ const setCurrentUser = user => ({
   payload: user
 });
 
-const fetchMyProfile = () => {
+export const fetchMyProfile = () => {
   return async dispatch => {
     try {
       const res = await axios.get("http://127.0.0.1:8000/api/profile/");
       const profile = res.data;
       dispatch({
-        type: actionTypes.FUTCH_MY_PROFILE,
+        type: actionTypes.FETCH_MY_PROFILE,
         payload: profile
       });
     } catch (error) {
@@ -104,7 +104,7 @@ export const fetchProfile = (profileID, navigation) => {
       );
       const profile = res.data;
       dispatch({
-        type: actionTypes.FUTCH_PROFILE,
+        type: actionTypes.FETCH_PROFILE,
         payload: profile
       });
       navigation.navigate("Profile");

@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./styles";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-import { Button } from "native-base";
+import { Button, Spinner } from "native-base";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -42,7 +42,7 @@ class ActivityDetail extends Component {
       guest: ""
     };
     if (!this.props.activity.orgnizer) {
-      return <Text>Loading</Text>;
+      return <Spinner />;
     } else {
       return (
         <ScrollView style={styles.pageView}>

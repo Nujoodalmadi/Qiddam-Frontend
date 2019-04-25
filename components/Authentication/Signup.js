@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
-
 import styles from "./styles";
 import * as actionCreators from "../../store/actions";
 import { connect } from "react-redux";
