@@ -75,6 +75,8 @@ class ActivityCreateForm extends Component {
     time: ""
   };
 
+  //Profile> Activity Detail> Update> activityCreateForm
+
   async componentDidMount() {
     await this.props.fetchCategories();
   }

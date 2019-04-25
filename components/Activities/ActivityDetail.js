@@ -72,9 +72,8 @@ class ActivityDetail extends Component {
                 onPress={() =>
                   this.props.fetchProfile(
                     this.props.activity.orgnizer.user.id,
-                    this.props.activity.orgnizer.user.id === this.props.user.id
-                      ? this.props.navigation.navigate("MyProfile")
-                      : this.props.navigation.navigate("Profile")
+
+                    this.props.navigation
                   )
                 }
               >

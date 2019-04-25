@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://65-nfr.anonymous.qiddam-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.65-nfr.anonymous.qiddam-frontend.exp.direct",
+  "ngrokPid": 3702
 }

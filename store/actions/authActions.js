@@ -107,7 +107,7 @@ export const fetchProfile = (profileID, navigation) => {
         type: actionTypes.FUTCH_PROFILE,
         payload: profile
       });
-      navigation;
+      navigation.navigate("Profile");
     } catch (error) {
       console.error("Someting what wrong", error);
     }

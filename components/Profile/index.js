@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  //  fetchMyProfile: () => dispatch(actionCreators.fetchMyProfile())
+  //  fetchProfile: () => dispatch(actionCreators.fetchProfile())
 });
 
 export default connect(
