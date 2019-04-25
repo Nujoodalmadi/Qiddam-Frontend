@@ -39,9 +39,9 @@ class Categories extends Component {
   componentDidMount() {
     this.props.fetchCategories();
   }
-  handlePress = categoryID => {
-    this.props.fetchActivitiesCat(categoryID),
-      this.props.navigation.navigate("ActivitiesList");
+  handlePress = async categoryID => {
+    this.props.catchCategoryID(categoryID);
+    this.props.navigation.navigate("ActivitiesList");
   };
 
   async onRefresh() {
@@ -91,7 +91,7 @@ class Categories extends Component {
       tension={100}
       activeScale={0.9}
       containerStyle={styles.categoryList}
-      onPress={() => this.handlePress(item.id)}
+      onPress={() => this.handlePress(item.id)} //this should be sent to the store
       rightTitleStyle={styles.titleTextCategory}
       rightTitleContainerStyle={styles.titleCategory}
     />
@@ -128,7 +128,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(actionCreators.fetchCategories()),
   fetchActivitiesCat: categoryID =>
-    dispatch(actionCreators.fetchActivitiesCat(categoryID))
+    dispatch(actionCreators.fetchActivitiesCat(categoryID)),
+  catchCategoryID: categoryID =>
+    dispatch(actionCreators.catchCategoryID(categoryID))
 });
 export default connect(
   mapStateToProps,

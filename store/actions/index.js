@@ -14,7 +14,8 @@ export {
   activityDetails,
   fetchActivitiesCat,
   createActivity,
-  userActivities
+  userActivities,
+  catchCategoryID
 } from "./activityActions";
 
 // Invite

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    width: 300,
+    width: 100,
     borderRadius: 30,
     backgroundColor: "transparent"
   },
@@ -81,7 +81,37 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center"
+  },
+  gender: {
+    justifyContent: "space-around",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 30,
+    width: 100,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#808080",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5
+  },
+
+  dateIcon: {
+    position: "absolute",
+    left: 0,
+    top: 4,
+    marginLeft: 0
+  },
+  dateInput: {
+    borderWidth: 0
   }
+  // ... You can check the source to find the other keys.
 });
 
 export default styles;

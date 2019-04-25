@@ -72,6 +72,7 @@ class ActivityDetail extends Component {
                 onPress={() =>
                   this.props.fetchProfile(
                     this.props.activity.orgnizer.user.id,
+
                     this.props.navigation
                   )
                 }

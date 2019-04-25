@@ -86,6 +86,11 @@ export const createActivity = (activityOBJ, navigation) => {
   };
 };
 
+export const catchCategoryID = categoryID => ({
+  type: actionTypes.CATCH_CATEGORY_ID,
+  payload: categoryID
+});
+
 // export const updateActivity = (activity, activityUpdate) => {
 //   return async dispatch => {
 //     try {

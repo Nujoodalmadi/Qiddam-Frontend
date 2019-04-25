@@ -8,6 +8,10 @@ import TouchableScale from "react-native-touchable-scale";
 import { Spinner } from "native-base";
 
 class ActivitiesList extends Component {
+  async componentDidMount() {
+    await this.props.fetchActivitiesCat(this.props.categoryID);
+  }
+
   static navigationOptions = {
     headerBackground: (
       <Image
@@ -35,7 +39,7 @@ class ActivitiesList extends Component {
 
   async onRefresh() {
     this.setState({ isFetching: true });
-    await this.props.fetchActivitiesCat(this.props.categoryID),
+    await this.props.fetchActivitiesCat(this.props.categoryID), //this must be changed
       this.setState({ isFetching: false });
   }
 
@@ -107,8 +111,9 @@ class ActivitiesList extends Component {
 
 const mapStateToProps = state => {
   return {
-    categoryActivities: state.activityReducer.categoryActivities.activities
+    categoryActivities: state.activityReducer.categoryActivities.activities,
     // userGender: state.authReducer.user.gender //add this to backend
+    categoryID: state.activityReducer.categoryID
   };
 };
 const mapDispatchToProps = dispatch => ({

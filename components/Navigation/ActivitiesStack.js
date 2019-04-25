@@ -3,7 +3,7 @@ import { createStackNavigator } from "react-navigation";
 import Categories from "../Activities/Categories";
 import ActivitiesList from "../Activities/ActivitiesList";
 import ActivityDetail from "../Activities/ActivityDetail";
-import ActivityCreate from "../Activities/ActivityCreateForm";
+import ActivityCreate from "../Activities/ActivityCreateUpdate/ActivityCreateForm";
 import Profile from "../Profile/index";
 
 import Login from "../Authentication/Login";

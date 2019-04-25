@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { TouchableOpacity, Text, View } from "react-native";
 import TimePicker from "react-native-24h-timepicker";
-import * as actionCreators from "../../store/actions";
-import styles from "./styles";
+import * as actionCreators from "../../../store/actions";
+import styles from "../styles";
 import {
   Input,
   Icon,
@@ -25,7 +25,7 @@ class ActivityCreateForm extends Component {
     headerBackground: (
       <Image
         style={styles.catHeader}
-        source={require("../../img/header.png")}
+        source={require("../../../img/header.png")}
       />
     ),
 
@@ -49,10 +49,7 @@ class ActivityCreateForm extends Component {
     this.setState({ time: "12:23:00" });
     this.TimePicker.close();
   };
-  // setDate = dateSlice => {
 
-  //   this.setState({ date: dateSlice });
-  // };
   setCategory = newCategory => {
     this.setState({ chosenCategory: newCategory });
   };
@@ -74,6 +71,8 @@ class ActivityCreateForm extends Component {
     date: "",
     time: ""
   };
+
+  //Profile> Activity Detail> Update> activityCreateForm
 
   async componentDidMount() {
     await this.props.fetchCategories();
@@ -145,7 +144,7 @@ class ActivityCreateForm extends Component {
                           placeholder="أولاد ولا بنات؟"
                           placeholderStyle={{ color: "#bfc6ea" }}
                           placeholderIconColor="#007aff"
-                          selectedValue={this.state.selectedGender}
+                          selectedValue={this.state.selectedGender} //??
                           onValueChange={this.onValueChangeGender}
                         >
                           <Picker.Item label="بنات" value="أنثى" />
