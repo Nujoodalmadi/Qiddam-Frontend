@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 
-import {
-  Text,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  Image,
-  Alert
-} from "react-native";
-import { Icon, Item, Picker } from "native-base";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
+
 import styles from "./styles";
 import * as actionCreators from "../../store/actions";
 import { connect } from "react-redux";
+import ModalSelector from "react-native-modal-selector";
+import DatePicker from "react-native-datepicker";
 
 class Signup extends Component {
   static navigationOptions = {
@@ -36,15 +30,23 @@ class Signup extends Component {
     }
   };
 
-  onValueChangeDOB = value => {
-    this.setState({ profile: { ...this.state.profile, date_of_birth: value } });
-  };
+  // onValueChangeDOB = dateStr => {
+  //   this.setState({
+  //     profile: { ...this.state.profile, date_of_birth: dateStr }
+  //   });
+  // };
 
-  onValueChangeGender = value => {
-    this.setState({ profile: { ...this.state.profile, gender: value } });
+  onValueChangeGender = option => {
+    this.setState({ profile: { ...this.state.profile, gender: option.label } });
   };
 
   render() {
+    let index = 0;
+    const data = [
+      { key: index++, label: "ذكر" },
+      { key: index++, label: "أنثى" }
+    ];
+
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -91,38 +93,56 @@ class Signup extends Component {
             onChangeText={password => this.setState({ password })}
           />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.inputs}
-            placeholder="YYYY-MM-DD"
-            autoCapitalize="none"
-            onChangeText={this.onValueChangeDOB}
+        {/* DATE */}
+        <View style={styles.gender}>
+          <DatePicker
+            style={{ width: 200 }}
+            showIcon={false}
+            date={this.state.profile.date_of_birth}
+            mode="date"
+            placeholder="تاريخ ميلادك"
+            format="YYYY-MM-DD"
+            minDate="2016-05-01"
+            maxDate="2016-06-01"
+            confirmBtnText="Confirm"
+            customStyles={{
+              dateIcon: {
+                position: "absolute",
+                left: 0,
+                top: 4,
+                color: "red",
+                marginLeft: 0
+              },
+              dateInput: {
+                borderWidth: 0
+              }
+            }}
+            cancelBtnText="Cancel"
+            onDateChange={dateStr =>
+              this.setState({
+                profile: { ...this.state.profile, date_of_birth: dateStr }
+              })
+            }
           />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.inputs}
-            placeholder="gender"
-            autoCapitalize="none"
-            onChangeText={this.onValueChangeGender}
-          />
-        </View>
-        {/* <Item steyle={styles.item}>
-          <Picker
-            style={styles.input}
-            mode="dropdown"
-            iosIcon={<Icon name="arrow-down" />}
-            style={{ width: undefined }}
-            placeholder="ذكر/أنثى"
-            placeholderStyle={{ color: "#bfc6ea" }}
-            placeholderIconColor="#007aff"
-            selectedValue={this.state.selectedGender}
-            onValueChange={this.onValueChangeGender}
+
+        {/* GENDER */}
+        <View style={styles.gender}>
+          <ModalSelector
+            data={data}
+            supportedOrientations={["portrait"]}
+            accessible={true}
+            cancelButtonAccessibilityLabel={"Cancel Button"}
+            onChange={this.onValueChangeGender}
           >
-            <Picker.Item label="أنثى" value="أنثى" />
-            <Picker.Item label="ذكر" value="ذكر" />
-          </Picker>
-        </Item> */}
+            <TextInput
+              editable={false}
+              placeholder="ذكر/أنثى"
+              value={this.state.profile.gender}
+            />
+          </ModalSelector>
+        </View>
+
         <TouchableOpacity
           style={[styles.buttonContainer, styles.loginButton]}
           onPress={() => this.props.signup(this.state, this.props.navigation)}
@@ -143,14 +163,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(Signup);
-
-// {
-//   "username": "nujoodff",
-//   "first_name": "nujood",
-//   "last_name": "madi",
-//   "email": "nujood@gmail.com",
-//   "profile": {
-//       "date_of_birth": "1212-12-12",
-//       "gender": "ذكر"
-//   }
-// }
