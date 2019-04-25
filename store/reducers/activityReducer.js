@@ -32,13 +32,10 @@ const activities = (state = initialState, action) => {
 
     case actionTypes.FETCH_USER_ACTIVITIES:
       cat = action.payload.map(category => category.activities);
-      console.log(cat);
-
       return {
         ...state,
         userActivities: cat
       };
-
     default:
       return state;
   }
