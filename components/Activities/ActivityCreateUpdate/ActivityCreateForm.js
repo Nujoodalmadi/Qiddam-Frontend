@@ -1,26 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, Text, View } from "react-native";
-import TimePicker from "react-native-24h-timepicker";
+import { Text, View } from "react-native";
 import * as actionCreators from "../../../store/actions";
+
 import styles from "../styles";
-import {
-  Input,
-  Icon,
-  List,
-  ListItem,
-  Body,
-  Form,
-  Item,
-  Button,
-  DatePicker,
-  Root,
-  Picker,
-  Spinner
-} from "native-base";
+import { Input, Form, Item, Button, Spinner } from "native-base";
 import { Image, ImageBackground } from "react-native";
 
+//Components:
+import TimeSelector from "../../Util/TimeSelector";
+import DateSelector from "../../Util/DateSelector";
+import CategorySelector from "../../Util/CategorySelector";
+import GenderSelector from "../../Util/GenderSelector";
+
 class ActivityCreateForm extends Component {
+  async componentDidMount() {
+    await this.props.fetchCategories();
+  }
+
   static navigationOptions = {
     headerBackground: (
       <Image
@@ -40,191 +37,148 @@ class ActivityCreateForm extends Component {
       fontWeight: "bold"
     }
   };
-  onCancel = () => {
-    this.TimePicker.close();
-  };
 
-  onConfirm = (hour, minute) => {
-    // this.setState({ time: `${hour}:${minute}` });
-    this.setState({ time: "12:23:00" });
-    this.TimePicker.close();
-  };
-
-  setCategory = newCategory => {
-    this.setState({ chosenCategory: newCategory });
-  };
-  onValueChange = value => {
-    this.setState({ category: value });
-  };
-
-  onValueChangeGender = value => {
-    this.setState({ gender: value });
+  renderButton = () => {
+    if (this.props.edit) {
+      return (
+        <Button onPress={this.handleUpdate} style={styles.shareButton}>
+          <Text>ابديت</Text>
+        </Button>
+      );
+    } else {
+      return (
+        <Button onPress={this.handleCreate} style={styles.shareButton}>
+          <Text>انشر الدعوة</Text>
+        </Button>
+      );
+    }
   };
 
   state = {
-    title: "",
+    number_of_people: "",
     description: "",
     category: "",
-    gender: "",
     location: "",
-    number_of_people: "",
+    gender: "",
+    title: "",
     date: "",
     time: ""
   };
 
-  //Profile> Activity Detail> Update> activityCreateForm
+  handleUpdate = async () => {
+    await this.props.updateActivity(
+      this.props.activity.id,
+      this.state,
+      this.props.navigation
+    );
+    this.props.toggleEdit();
+  };
 
-  async componentDidMount() {
-    await this.props.fetchCategories();
-  }
+  handleCreate = async () => {
+    this.props.createActivity(this.state, this.props.navigation);
+  };
+  // style={styles.shareButton}
 
   render() {
     if (!this.props.categories) {
       return <Spinner />;
     } else {
       return (
-        <Root>
-          <ImageBackground style={styles.background}>
-            <View style={styles.createForm}>
-              <List>
-                <ListItem style={{ borderBottomWidth: 0 }}>
-                  <Body>
-                    <Form>
-                      <Item rounded steyle={styles.item}>
-                        <Input
-                          style={styles.input}
-                          autoCorrect={false}
-                          autoCapitalize="none"
-                          onChangeText={title => this.setState({ title })}
-                          placeholder="عنوان الدعوة"
-                        />
-                      </Item>
-                      <Item rounded steyle={styles.item}>
-                        <Input
-                          style={styles.input}
-                          autoCorrect={false}
-                          autoCapitalize="none"
-                          onChangeText={description =>
-                            this.setState({ description })
-                          }
-                          placeholder="وصف أكثر عن الدعوة"
-                        />
-                      </Item>
+        <ImageBackground style={styles.background}>
+          <View style={styles.createForm}>
+            <Form>
+              <Item rounded steyle={styles.item}>
+                <Input
+                  style={styles.input}
+                  autoCorrect={false}
+                  value={this.state.title}
+                  autoCapitalize="none"
+                  onChangeText={title => this.setState({ title })}
+                  placeholder="عنوان الدعوة"
+                />
+              </Item>
+              <Item rounded steyle={styles.item}>
+                <Input
+                  style={styles.input}
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  value={this.state.description}
+                  onChangeText={description => this.setState({ description })}
+                  placeholder="وصف أكثر عن الدعوة"
+                />
+              </Item>
+              {/* CATEGORY */}
+              <Item steyle={styles.item}>
+                <CategorySelector
+                  categories={this.props.categories}
+                  onValueChange={value => {
+                    this.setState({ category: value });
+                  }}
+                  selectedValue={this.state.selected}
+                />
+              </Item>
 
-                      <Item steyle={styles.item}>
-                        <Picker
-                          style={styles.input}
-                          mode="dropdown"
-                          iosIcon={<Icon name="arrow-down" />}
-                          style={{ width: undefined }}
-                          placeholder=" نوع الدعوة"
-                          placeholderStyle={{ color: "#bfc6ea" }}
-                          placeholderIconColor="#007aff"
-                          selectedValue={this.state.selected}
-                          onValueChange={this.onValueChange}
-                        >
-                          {this.props.categories.map(category => (
-                            <Picker.Item
-                              label={category.title}
-                              value={category.id}
-                              key={category.id}
-                            >
-                              {category.title}
-                            </Picker.Item>
-                          ))}
-                        </Picker>
-                      </Item>
-
-                      <Item steyle={styles.item}>
-                        <Picker
-                          style={styles.input}
-                          mode="dropdown"
-                          iosIcon={<Icon name="arrow-down" />}
-                          style={{ width: undefined }}
-                          placeholder="أولاد ولا بنات؟"
-                          placeholderStyle={{ color: "#bfc6ea" }}
-                          placeholderIconColor="#007aff"
-                          selectedValue={this.state.selectedGender} //??
-                          onValueChange={this.onValueChangeGender}
-                        >
-                          <Picker.Item label="بنات" value="أنثى" />
-                          <Picker.Item label="أولاد" value="ذكر" />
-                          <Picker.Item label="الكل" value="الكل" />
-                        </Picker>
-                      </Item>
-
-                      <Item rounded steyle={styles.item}>
-                        <Input
-                          style={styles.input}
-                          autoCorrect={false}
-                          autoCapitalize="none"
-                          onChangeText={location => this.setState({ location })}
-                          placeholder="المكان"
-                        />
-                      </Item>
-                      <Item rounded steyle={styles.item}>
-                        <Input
-                          style={styles.input}
-                          autoCorrect={false}
-                          autoCapitalize="none"
-                          onChangeText={number_of_people =>
-                            this.setState({ number_of_people })
-                          }
-                          placeholder="عدد المدعوّين"
-                        />
-                      </Item>
-
-                      <DatePicker
-                        style={styles.input}
-                        defaultDate={new Date(2019, 4, 4)}
-                        minimumDate={new Date(2019, 1, 1)}
-                        maximumDate={new Date(2019, 12, 31)}
-                        locale={"en"}
-                        timeZoneOffsetInMinutes={undefined}
-                        modalTransparent={false}
-                        animationType={"fade"}
-                        androidMode={"default"}
-                        placeHolderText="تاريخ الدعوة"
-                        textStyle={{ color: "green" }}
-                        placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={() =>
-                          this.setState({ date: "1212-12-12" })
-                        }
-                        disabled={false}
-                      />
-
-                      <View>
-                        <TouchableOpacity
-                          onPress={() => this.TimePicker.open()}
-                        >
-                          <Text>وقت الدعوة</Text>
-                        </TouchableOpacity>
-                        <Text>{this.state.time}</Text>
-                        <TimePicker
-                          ref={ref => {
-                            this.TimePicker = ref;
-                          }}
-                          onCancel={() => this.onCancel()}
-                          onConfirm={(hour, minute) =>
-                            this.onConfirm(hour, minute)
-                          }
-                        />
-                      </View>
-                    </Form>
-                  </Body>
-                </ListItem>
-                <Button
-                  onPress={() =>
-                    this.props.createActivity(this.state, this.props.navigation)
+              {/* GENDER */}
+              <View style={styles.gender}>
+                <GenderSelector
+                  genderChange={option => {
+                    this.setState({ gender: option.label });
+                  }}
+                  gender={this.state.gender}
+                />
+              </View>
+              {/* LOCATION */}
+              <Item rounded steyle={styles.item}>
+                <Input
+                  style={styles.input}
+                  autoCorrect={false}
+                  value={this.state.location}
+                  autoCapitalize="none"
+                  onChangeText={location => this.setState({ location })}
+                  placeholder="المكان"
+                />
+              </Item>
+              {/* # INVITES */}
+              <Item rounded steyle={styles.item}>
+                <Input
+                  style={styles.input}
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  onChangeText={number_of_people =>
+                    this.setState({ number_of_people })
                   }
-                  style={styles.shareButton}
-                >
-                  <Text>انشر الدعوة</Text>
-                </Button>
-              </List>
-            </View>
-          </ImageBackground>
-        </Root>
+                  placeholder="عدد المدعوّين"
+                />
+              </Item>
+
+              {/* DATE */}
+              <View style={styles.gender}>
+                <DateSelector
+                  date={this.state.date}
+                  onDateChange={dateStr =>
+                    this.setState({
+                      date: dateStr
+                    })
+                  }
+                />
+              </View>
+              {/* TIME */}
+              <View style={styles.gender}>
+                <TimeSelector
+                  time={this.state.time}
+                  onTimeChange={dateStr =>
+                    this.setState({
+                      time: dateStr
+                    })
+                  }
+                />
+              </View>
+              <View />
+            </Form>
+
+            {this.renderButton()}
+          </View>
+        </ImageBackground>
       );
     }
   }
@@ -238,6 +192,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   createActivity: (activityData, navigation) =>
     dispatch(actionCreators.createActivity(activityData, navigation)),
+  updateActivity: (activityID, activityData, navigation) =>
+    dispatch(
+      actionCreators.updateActivity(activityID, activityData, navigation)
+    ),
   fetchCategories: () => dispatch(actionCreators.fetchCategories())
 });
 export default connect(

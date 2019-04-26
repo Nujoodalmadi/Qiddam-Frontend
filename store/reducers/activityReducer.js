@@ -15,12 +15,6 @@ const activities = (state = initialState, action) => {
         ...state,
         categories: action.payload
       };
-
-    case actionTypes.ACTIVITY_DETAILS:
-      return {
-        ...state,
-        activity: action.payload
-      };
     case actionTypes.FETCH_CATEGORY_ACTIVITIES:
       const allCategories = action.payload;
       const categoryActivities = allCategories.find(
@@ -30,24 +24,21 @@ const activities = (state = initialState, action) => {
         ...state,
         categoryActivities: categoryActivities
       };
-
-    case actionTypes.FETCH_USER_ACTIVITIES:
-      cat = action.payload.map(category => category.activities);
-
-      console.log(cat);
-
+    case actionTypes.ACTIVITY_DETAILS:
+      return {
+        ...state,
+        activity: action.payload
+      };
     case actionTypes.CATCH_CATEGORY_ID:
       return {
         ...state,
         categoryID: action.payload
       };
+    case actionTypes.UPDATE_ACTIVITY:
+      return {
+        ...state
+      };
 
-    //???
-
-    // return {
-    //   ...state,
-    //   userActivities: cat
-    // };
     default:
       return state;
   }

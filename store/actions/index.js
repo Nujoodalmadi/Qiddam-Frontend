@@ -14,6 +14,7 @@ export {
   activityDetails,
   fetchActivitiesCat,
   createActivity,
+  updateActivity,
   userActivities,
   catchCategoryID
 } from "./activityActions";

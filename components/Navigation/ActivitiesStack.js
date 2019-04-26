@@ -6,9 +6,6 @@ import ActivityDetail from "../Activities/ActivityDetail";
 import ActivityCreate from "../Activities/ActivityCreateUpdate/ActivityCreateForm";
 import Profile from "../Profile/index";
 
-import Login from "../Authentication/Login";
-import Signup from "../Authentication/Signup";
-
 const ActivitiesStack = createStackNavigator(
   {
     Categories: Categories,

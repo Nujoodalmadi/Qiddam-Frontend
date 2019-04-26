@@ -1,22 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Image, ScrollView } from "react-native";
+//
+import { View, Image, ScrollView, Button } from "react-native";
+import { Text } from "native-base";
+//Styles
 import styles from "../MyProfile/style";
-import * as actionCreators from "../../store/actions";
+//Componenets
 import InvitesCard from "./InvitesCard";
-import { Button, Text } from "native-base";
+import MyActivities from "./MyActivities";
+import * as actionCreators from "../../store/actions";
 
 class MyProfile extends Component {
+  refechProfile = () => {
+    this.props.fetchMyProfile();
+  };
+
   static navigationOptions = {
     header: null
   };
 
-  componentDidMount() {
-    this.props.userActivities(this.props.profile.user.username);
-  }
-
   render() {
     const profile = this.props.profile;
+
     return (
       <ScrollView scrollEnabled={false} style={styles.pageView}>
         <View style={styles.container}>
@@ -28,9 +33,19 @@ class MyProfile extends Component {
           </View>
           <Image
             style={styles.avatar}
-            source={{
-              uri: profile.img
-            }}
+            source={
+              profile.img
+                ? { uri: profile.img }
+                : {
+                    uri:
+                      "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+                  }
+            }
+          />
+          <Button
+            onPress={this.refechProfile}
+            title="refresh"
+            color="#841584"
           />
         </View>
         <View style={styles.body}>
@@ -44,14 +59,16 @@ class MyProfile extends Component {
             <Text style={styles.description}>
               {profile.gender} {profile.date_of_birth}
             </Text>
-            <Button
+            {/* <Button
               onPress={() => alert("HElloo.. am the update button")}
               title="Update"
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
-            />
+            /> */}
           </View>
         </View>
+        <Text style={styles.qiddamWalla}>أنشطتي</Text>
+        <MyActivities />
         <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
         <View style={styles.flatList}>
           <InvitesCard />
@@ -62,8 +79,7 @@ class MyProfile extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  userActivities: name => dispatch(actionCreators.userActivities(name)),
-  fetchProfile: () => dispatch(actionCreators.fetchMyProfile())
+  fetchMyProfile: () => dispatch(actionCreators.fetchMyProfile())
 });
 
 const mapStateToProps = state => ({
