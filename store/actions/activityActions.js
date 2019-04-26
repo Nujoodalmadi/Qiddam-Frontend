@@ -39,25 +39,6 @@ export const fetchActivitiesCat = categoryID => {
   };
 };
 
-export const userActivities = name => {
-  return async dispatch => {
-    try {
-      const res = await instance.get("/api/categories/");
-      const activities = res.data;
-      dispatch({
-        type: actionTypes.FETCH_USER_ACTIVITIES,
-        payload: activities,
-        username: name
-      });
-    } catch (error) {
-      console.error(
-        "Something went wrong while fetching user activities ",
-        error
-      );
-    }
-  };
-};
-
 export const activityDetails = activityID => {
   return async dispatch => {
     try {
@@ -78,10 +59,9 @@ export const createActivity = (activityOBJ, navigation) => {
     console.log(activityOBJ);
     try {
       await instance.post("/api/activity/create/", activityOBJ);
-
       navigation.replace("Categories");
     } catch (error) {
-      console.error("Something went wrong", error);
+      console.error("Something went wrong (creating)", error);
     }
   };
 };
@@ -91,30 +71,33 @@ export const catchCategoryID = categoryID => ({
   payload: categoryID
 });
 
-// export const updateActivity = (activity, activityUpdate) => {
-//   return async dispatch => {
-//     try {
-//       const res = await instance.put(
-//         `/api/activity/update/${activity}`,
-//         activityUpdate
-//       );
-//       const response = res.data;
-//       dispatch({
-//         type: actionTypes.UPDATE_ACTIVITY,
-//         payload: response
-//       });
-//     } catch (error) {
-//       console.error("Something wnet wrong", error);
-//     }
-//   };
-// };
+export const updateActivity = (activityID, activityUpdate, navigation) => {
+  console.log(activityUpdate);
+  return async dispatch => {
+    try {
+      const res = await instance.put(
+        `/api/${activityID}/update/`,
+        activityUpdate
+      );
+
+      const activity = res.data;
+      await dispatch({
+        type: actionTypes.UPDATE_ACTIVITY,
+        payload: activity
+      });
+      navigation.replace("MyProfile");
+    } catch (error) {
+      console.error("Something went wrong (updating)", error);
+    }
+  };
+};
 
 export const deleteActivity = activityID => {
   return async () => {
     try {
       await instance.delete(`/api/activity/delete/${activityID}`);
     } catch (error) {
-      console.error("Something wnet wrong", error);
+      console.error("Something wnet wrong (deleting)", error);
     }
   };
 };

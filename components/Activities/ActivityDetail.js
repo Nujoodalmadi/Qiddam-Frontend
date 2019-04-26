@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Button
+} from "react-native";
 import styles from "./styles";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-import { Button, Spinner } from "native-base";
+import { Spinner } from "native-base";
+import ActivityCreateForm from "./ActivityCreateUpdate/ActivityCreateForm";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -35,14 +43,30 @@ class ActivityDetail extends Component {
     }
   };
 
+  state = {
+    edit: false
+  };
+  toggleEdit = () => {
+    const newVal = !this.state.edit;
+    this.setState({ edit: newVal });
+  };
   render() {
     const invite = {
       activity: this.props.activity.id,
       status: "في انتظار القبول",
       guest: ""
     };
+
     if (!this.props.activity.orgnizer) {
       return <Spinner />;
+    } else if (this.state.edit) {
+      return (
+        <ActivityCreateForm
+          activity={this.props.activity}
+          edit={this.state.edit}
+          toggleEdit={this.toggleEdit}
+        />
+      );
     } else {
       return (
         <ScrollView style={styles.pageView}>
@@ -53,7 +77,6 @@ class ActivityDetail extends Component {
                 {this.props.activity.title}
               </Text>
             </View>
-
             <View style={styles.postContent}>
               <Text style={styles.postTitle}>
                 {this.props.activity.number_of_people}{" "}
@@ -97,12 +120,28 @@ class ActivityDetail extends Component {
               </TouchableOpacity>
             </View>
 
-            <Button
-              style={styles.shareButton}
-              onPress={() => this.handlePress(invite)}
-            >
-              <Text style={styles.shareButtonText}>قدّام </Text>
-            </Button>
+            {this.props.user ? (
+              this.props.user.user_id ===
+              this.props.activity.orgnizer.user.id ? (
+                <Button
+                  title="أبديت"
+                  color="#841584"
+                  onPress={() => this.setState({ edit: true })}
+                />
+              ) : (
+                <Button
+                  onPress={() => this.handlePress(invite)}
+                  style={styles.shareButton}
+                  title="قدام"
+                  color="#841584"
+                />
+              )
+            ) : (
+              <Button
+                title="سجل دخولك"
+                onPress={() => this.props.navigation.navigate("Login")}
+              />
+            )}
           </View>
         </ScrollView>
       );
