@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View } from "react-native";
+import { Text, View, Image, ImageBackground } from "react-native";
+import { Divider } from "react-native-elements";
 import * as actionCreators from "../../../store/actions";
 
 import styles from "../styles";
 import { Input, Form, Item, Button, Spinner } from "native-base";
-import { Image, ImageBackground } from "react-native";
 
 //Components:
 import TimeSelector from "../../Util/TimeSelector";
@@ -42,13 +42,13 @@ class ActivityCreateForm extends Component {
     if (this.props.edit) {
       return (
         <Button onPress={this.handleUpdate} style={styles.shareButton}>
-          <Text>ابديت</Text>
+          <Text style={styles.shareButtonText}>تحديث</Text>
         </Button>
       );
     } else {
       return (
         <Button onPress={this.handleCreate} style={styles.shareButton}>
-          <Text>انشر الدعوة</Text>
+          <Text style={styles.shareButtonText}>انشر الدعوة</Text>
         </Button>
       );
     }
@@ -85,9 +85,9 @@ class ActivityCreateForm extends Component {
     } else {
       return (
         <ImageBackground style={styles.background}>
-          <View style={styles.createForm}>
+          <View style={styles.addContent}>
             <Form>
-              <Item rounded steyle={styles.item}>
+              <Item rounded style={styles.item}>
                 <Input
                   style={styles.input}
                   autoCorrect={false}
@@ -97,7 +97,7 @@ class ActivityCreateForm extends Component {
                   placeholder="عنوان الدعوة"
                 />
               </Item>
-              <Item rounded steyle={styles.item}>
+              <Item rounded style={styles.itemLarge}>
                 <Input
                   style={styles.input}
                   autoCorrect={false}
@@ -107,28 +107,8 @@ class ActivityCreateForm extends Component {
                   placeholder="وصف أكثر عن الدعوة"
                 />
               </Item>
-              {/* CATEGORY */}
-              <Item steyle={styles.item}>
-                <CategorySelector
-                  categories={this.props.categories}
-                  onValueChange={value => {
-                    this.setState({ category: value });
-                  }}
-                  selectedValue={this.state.selected}
-                />
-              </Item>
-
-              {/* GENDER */}
-              <View style={styles.gender}>
-                <GenderSelector
-                  genderChange={option => {
-                    this.setState({ gender: option.label });
-                  }}
-                  gender={this.state.gender}
-                />
-              </View>
               {/* LOCATION */}
-              <Item rounded steyle={styles.item}>
+              <Item rounded style={styles.item}>
                 <Input
                   style={styles.input}
                   autoCorrect={false}
@@ -139,7 +119,7 @@ class ActivityCreateForm extends Component {
                 />
               </Item>
               {/* # INVITES */}
-              <Item rounded steyle={styles.item}>
+              <Item rounded style={styles.item}>
                 <Input
                   style={styles.input}
                   autoCorrect={false}
@@ -150,33 +130,60 @@ class ActivityCreateForm extends Component {
                   placeholder="عدد المدعوّين"
                 />
               </Item>
+              {/* CATEGORY */}
 
-              {/* DATE */}
-              <View style={styles.gender}>
-                <DateSelector
-                  date={this.state.date}
-                  onDateChange={dateStr =>
-                    this.setState({
-                      date: dateStr
-                    })
-                  }
-                />
-              </View>
-              {/* TIME */}
-              <View style={styles.gender}>
-                <TimeSelector
-                  time={this.state.time}
-                  onTimeChange={dateStr =>
-                    this.setState({
-                      time: dateStr
-                    })
-                  }
-                />
+              <CategorySelector
+                categories={this.props.categories}
+                onValueChange={value => {
+                  this.setState({ category: value });
+                }}
+                selectedValue={this.state.selected}
+              />
+
+              {/* GENDER */}
+              <View style={styles.genderContainer}>
+                <View style={styles.yellow}>
+                  <View style={styles.gender}>
+                    <GenderSelector
+                      genderChange={option => {
+                        this.setState({ gender: option.label });
+                      }}
+                      gender={this.state.gender}
+                    />
+                  </View>
+                </View>
+
+                {/* DATE */}
+                <View style={styles.purple}>
+                  <View style={styles.gender}>
+                    <DateSelector
+                      date={this.state.date}
+                      onDateChange={dateStr =>
+                        this.setState({
+                          date: dateStr
+                        })
+                      }
+                    />
+                  </View>
+                </View>
+                {/* TIME */}
+                <View style={styles.green}>
+                  <View style={styles.gender}>
+                    <TimeSelector
+                      time={this.state.time}
+                      onTimeChange={dateStr =>
+                        this.setState({
+                          time: dateStr
+                        })
+                      }
+                    />
+                  </View>
+                </View>
               </View>
               <View />
+              <Divider style={styles.divider} />
+              {this.renderButton()}
             </Form>
-
-            {this.renderButton()}
           </View>
         </ImageBackground>
       );

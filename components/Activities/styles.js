@@ -101,6 +101,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
+  addContent: {
+    flex: 1,
+    padding: 10,
+    flexDirection: "column",
+    backgroundColor: "#efefef",
+    alignSelf: "center",
+    maxWidth: 360,
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 10
+  },
   postContentSub: {
     flex: 1,
     padding: 30,
@@ -286,19 +297,28 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22
   },
   input: {
-    height: 35,
-    marginLeft: 16,
-    borderBottomColor: "#FFFFFF",
     flex: 1,
-
     fontSize: 15,
-    marginTop: 10,
-    alignSelf: "center"
+    alignSelf: "center",
+    alignItems: "center"
   },
   item: {
-    marginTop: 100,
-    alignItems: "flex-end"
+    maxHeight: 40,
+    flex: 1,
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "white",
+    marginBottom: 10
   },
+  itemLarge: {
+    maxHeight: 160,
+    flex: 1,
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "white",
+    marginBottom: 10
+  },
+
   peopleCount: {
     width: 50,
     height: 50,
@@ -361,6 +381,51 @@ const styles = StyleSheet.create({
     color: "#D9663D",
     fontSize: 15,
     fontWeight: "700"
+  },
+  purple: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginLeft: 10,
+    backgroundColor: "#8768A6",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  blue: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginLeft: 20,
+    backgroundColor: "#049DD9",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  green: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginLeft: 10,
+    backgroundColor: "#04BFBF",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  yellow: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginLeft: 10,
+    backgroundColor: "#F2CA50",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  orange: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginLeft: 10,
+    backgroundColor: "#D9663D",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 

@@ -5,7 +5,7 @@ class DateSelector extends Component {
   render() {
     return (
       <DatePicker
-        style={{ width: 200 }}
+        style={{ width: 80 }}
         showIcon={false}
         date={this.props.date}
         mode="date"
