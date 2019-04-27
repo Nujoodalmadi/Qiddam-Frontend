@@ -223,9 +223,8 @@ const styles = StyleSheet.create({
   },
   titleTextCategory: {
     color: "#D9663D",
-    fontSize: 20,
-
-    fontWeight: "200",
+    fontSize: 18,
+    fontWeight: "bold",
     borderRadius: 30,
     borderWidth: 6,
     padding: 12,
@@ -240,8 +239,8 @@ const styles = StyleSheet.create({
   },
 
   titleStyle: {
-    fontWeight: "100",
-    fontSize: 10,
+    fontWeight: "bold",
+    fontSize: 14,
     alignSelf: "center",
     color: "#8768A6"
   },
@@ -254,13 +253,16 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 20,
     padding: 5,
-    color: "white"
+    color: "white",
+    fontWeight: "bold"
   },
   addButton: {
-    borderRadius: 20,
-    width: 60,
+    borderRadius: 30,
+    width: 140,
+    height: 48,
+    padding: 7,
     alignSelf: "center",
     backgroundColor: "rgba(242, 202, 80, 1)",
     shadowColor: "#8768A6",

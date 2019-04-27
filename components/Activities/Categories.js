@@ -93,7 +93,7 @@ class Categories extends Component {
       containerStyle={styles.categoryList}
       onPress={() => this.handlePress(item.id)} //this should be sent to the store
       rightTitleStyle={styles.titleTextCategory}
-      rightTitleContainerStyle={styles.titleCategory}
+      // rightTitleContainerStyle={styles.titleCategory}
     />
   );
 
@@ -104,7 +104,7 @@ class Categories extends Component {
           style={styles.addButton}
           onPress={() => this.props.navigation.navigate("ActivityCreate")}
         >
-          <Text style={styles.addButtonText}>أضف</Text>
+          <Text style={styles.addButtonText}>أنشئ دعوة!</Text>
         </TouchableOpacity>
 
         <FlatList
