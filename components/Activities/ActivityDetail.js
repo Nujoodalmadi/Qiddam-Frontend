@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Spinner } from "native-base";
 import ActivityCreateForm from "./ActivityCreateUpdate/ActivityCreateForm";
+import DetailPageButton from "../Util/DetailPageButton";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -35,6 +36,11 @@ class ActivityDetail extends Component {
     }
   };
 
+  toggleEdit = () => {
+    const newVal = !this.state.edit;
+    this.setState({ edit: newVal });
+  };
+
   handlePress = async invite => {
     if (this.props.user) {
       await this.props.createInvite(invite);
@@ -43,13 +49,15 @@ class ActivityDetail extends Component {
     }
   };
 
+  handleDelete = async () => {
+    await this.props.deleteActivity(this.props.activity.id),
+      this.props.navigation.replace("Categories");
+  };
+
   state = {
     edit: false
   };
-  toggleEdit = () => {
-    const newVal = !this.state.edit;
-    this.setState({ edit: newVal });
-  };
+
   render() {
     const invite = {
       activity: this.props.activity.id,
@@ -120,28 +128,15 @@ class ActivityDetail extends Component {
               </TouchableOpacity>
             </View>
 
-            {this.props.user ? (
-              this.props.user.user_id ===
-              this.props.activity.orgnizer.user.id ? (
-                <Button
-                  title="أبديت"
-                  color="#841584"
-                  onPress={() => this.setState({ edit: true })}
-                />
-              ) : (
-                <Button
-                  onPress={() => this.handlePress(invite)}
-                  style={styles.shareButton}
-                  title="قدام"
-                  color="#841584"
-                />
-              )
-            ) : (
-              <Button
-                title="سجل دخولك"
-                onPress={() => this.props.navigation.navigate("Login")}
-              />
-            )}
+            <DetailPageButton
+              user={this.props.user}
+              organizerID={this.props.activity.orgnizer.user.id}
+              userID={this.props.user.user_id}
+              onLogin={() => this.props.navigation.navigate("Login")}
+              onEdit={() => this.setState({ edit: true })}
+              onInvite={() => this.handlePress(invite)}
+              onDelete={this.handleDelete}
+            />
           </View>
         </ScrollView>
       );
@@ -159,7 +154,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   fetchProfile: (profileID, navigation) =>
     dispatch(actionCreators.fetchProfile(profileID, navigation)),
-  createInvite: invite => dispatch(actionCreators.createInvite(invite))
+  createInvite: invite => dispatch(actionCreators.createInvite(invite)),
+  deleteActivity: activityID =>
+    dispatch(actionCreators.deleteActivity(activityID))
 });
 
 export default connect(

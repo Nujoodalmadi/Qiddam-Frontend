@@ -95,7 +95,7 @@ export const updateActivity = (activityID, activityUpdate, navigation) => {
 export const deleteActivity = activityID => {
   return async () => {
     try {
-      await instance.delete(`/api/activity/delete/${activityID}`);
+      await instance.delete(`/api/${activityID}/delete/`);
     } catch (error) {
       console.error("Something wnet wrong (deleting)", error);
     }

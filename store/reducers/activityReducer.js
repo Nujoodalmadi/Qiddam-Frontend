@@ -38,6 +38,10 @@ const activities = (state = initialState, action) => {
       return {
         ...state
       };
+    case actionTypes.DELETE_ACTIVITY:
+      return {
+        ...state
+      };
 
     default:
       return state;
