@@ -45,7 +45,6 @@ class Categories extends Component {
   };
 
   async onRefresh() {
-    console.log("refreshing");
     this.setState({ isFetching: true });
     await this.props.fetchCategories();
     this.setState({ isFetching: false });
@@ -104,7 +103,7 @@ class Categories extends Component {
           style={styles.addButton}
           onPress={() => this.props.navigation.navigate("ActivityCreate")}
         >
-          <Text style={styles.addButtonText}>أضف</Text>
+          <Text style={styles.addButtonText}>أنشِئ دعوة</Text>
         </TouchableOpacity>
 
         <FlatList
