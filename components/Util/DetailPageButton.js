@@ -9,12 +9,20 @@ class DetailPageButton extends Component {
       <View>
         {this.props.user ? (
           this.props.userID === this.props.organizerID ? (
-            <View>
-              <Button onPress={this.props.onEdit} style={styles.shareButton}>
-                <Text style={styles.shareButtonText}>تعديل </Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                maxWidth: 100,
+                alignSelf: "center"
+              }}
+            >
+              <Button onPress={this.props.onEdit} style={styles.editButton}>
+                <Text style={styles.editButtonText}>تعديل </Text>
               </Button>
-              <Button onPress={this.props.onDelete} style={styles.shareButton}>
-                <Text style={styles.shareButtonText}>حذف </Text>
+              <Button onPress={this.props.onDelete} style={styles.editButton}>
+                <Text style={styles.editButtonText}>حذف </Text>
               </Button>
             </View>
           ) : (

@@ -18,11 +18,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     overflow: "hidden"
   },
-  avatar: {
-    width: 55,
-    height: 55,
-    borderRadius: 25
-  },
+
   text: {
     marginBottom: 5,
     flexDirection: "row",
@@ -86,8 +82,9 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    fontSize: 20,
+    fontSize: 25,
     color: "#8768A6",
+    fontWeight: "bold",
     marginTop: 10,
 
     textAlign: "center"
@@ -95,23 +92,41 @@ const styles = StyleSheet.create({
 
   postContent: {
     flex: 1,
-    padding: 30,
+    padding: 25,
+    flexDirection: "column",
     backgroundColor: "#efefef",
     alignSelf: "center",
     width: 300,
     borderRadius: 16,
-    marginTop: 20
+    marginTop: 10,
+    marginBottom: 10
   },
+  postContentSub: {
+    flex: 1,
+    padding: 30,
+    flexDirection: "column",
+    backgroundColor: "#f7f8f9",
+    alignSelf: "center",
+    width: 260,
+    borderRadius: 16,
+    marginTop: 20,
+    fontSize: 16,
+    marginTop: 10,
+    textAlign: "right"
+  },
+
   postTitle: {
     fontSize: 26,
     fontWeight: "600",
     textAlign: "right"
   },
-  postDescription: {
-    fontSize: 16,
-    marginTop: 10,
+  postSub: {
+    marginTop: 5,
+    fontSize: 12,
+    fontWeight: "600",
     textAlign: "right"
   },
+
   tags: {
     color: "#C75D7A",
     marginTop: 10,
@@ -119,16 +134,14 @@ const styles = StyleSheet.create({
   },
   date: {
     color: "#696969",
-    marginTop: 10,
+    marginTop: 5,
     textAlign: "right",
     alignSelf: "center"
   },
   avatar: {
-    width: 65,
-    height: 65,
+    width: 50,
+    height: 50,
     borderRadius: 25,
-    borderWidth: 3,
-    borderColor: "white",
     marginLeft: 3,
     marginTop: 3,
     marginBottom: 3
@@ -138,18 +151,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderWidth: 3,
     borderRadius: 25,
-    borderColor: "white",
-    backgroundColor: "rgb(222, 226, 226)"
+    borderColor: "white"
   },
 
   containerD: {
     flex: 1,
     backgroundColor: "white",
-    width: null
+    width: null,
+    flexDirection: "column",
+    justifyContent: "center"
   },
   name: {
     fontSize: 20,
-    color: "#04BFBF",
+    color: "#696969",
     fontWeight: "300",
     alignSelf: "center",
     marginLeft: 10
@@ -167,8 +181,8 @@ const styles = StyleSheet.create({
   },
   shareButtonText: {
     color: "white",
-    fontSize: 20,
-    fontWeight: "bold"
+    fontSize: 16,
+    fontWeight: "700"
   },
   qiddam: {
     width: 30,
@@ -284,6 +298,69 @@ const styles = StyleSheet.create({
   item: {
     marginTop: 100,
     alignItems: "flex-end"
+  },
+  peopleCount: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 5,
+    backgroundColor: "#04BFBF",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  female: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginLeft: 5,
+    backgroundColor: "#8768A6",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  male: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginLeft: 5,
+
+    backgroundColor: "#049DD9",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  genderContainer: {
+    flex: 1,
+    padding: 5,
+    flexDirection: "row",
+    justifyContent: "center",
+    backgroundColor: "#efefef",
+    alignSelf: "center",
+    width: 300,
+    maxHeight: 80,
+    borderRadius: 16,
+    marginTop: 20
+  },
+  divider: {
+    backgroundColor: "white",
+    height: 2,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  editButton: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: 50,
+    minWidth: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#efefef",
+    borderRadius: 30,
+    alignSelf: "center",
+    margin: 5
+  },
+  editButtonText: {
+    color: "#D9663D",
+    fontSize: 15,
+    fontWeight: "700"
   }
 });
 

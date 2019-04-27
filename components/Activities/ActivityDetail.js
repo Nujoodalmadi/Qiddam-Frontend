@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Button
-} from "react-native";
+import { Text, View, Image, ScrollView } from "react-native";
+import { Divider } from "react-native-elements";
 import styles from "./styles";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Spinner } from "native-base";
 import ActivityCreateForm from "./ActivityCreateUpdate/ActivityCreateForm";
 import DetailPageButton from "../Util/DetailPageButton";
+import ProfileButton from "../Util/ProfileButton";
+import DetailPageGender from "../Util/DetailPageGender";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -36,11 +32,6 @@ class ActivityDetail extends Component {
     }
   };
 
-  toggleEdit = () => {
-    const newVal = !this.state.edit;
-    this.setState({ edit: newVal });
-  };
-
   handlePress = async invite => {
     if (this.props.user) {
       await this.props.createInvite(invite);
@@ -52,6 +43,11 @@ class ActivityDetail extends Component {
   handleDelete = async () => {
     await this.props.deleteActivity(this.props.activity.id),
       this.props.navigation.replace("Categories");
+  };
+
+  toggleEdit = () => {
+    const newVal = !this.state.edit;
+    this.setState({ edit: newVal });
   };
 
   state = {
@@ -76,62 +72,48 @@ class ActivityDetail extends Component {
         />
       );
     } else {
+      // PROFILE
       return (
         <ScrollView style={styles.pageView}>
-          <Text>{"    "}</Text>
           <View style={styles.containerD}>
-            <View style={styles.header}>
+            <View style={styles.postContent}>
               <Text style={styles.headerTitle}>
                 {this.props.activity.title}
               </Text>
             </View>
             <View style={styles.postContent}>
-              <Text style={styles.postTitle}>
-                {this.props.activity.number_of_people}{" "}
-                {this.props.activity.gender}
-              </Text>
+              <View style={styles.postContentSub}>
+                <Text>{this.props.activity.description}</Text>
+              </View>
 
-              <Text style={styles.postDescription}>
-                {this.props.activity.description}
-              </Text>
+              <Text style={styles.date}>المطلوب</Text>
+              <DetailPageGender
+                peopleCount={this.props.activity.number_of_people}
+                gender={this.props.activity.gender}
+              />
+              <Divider style={styles.divider} />
 
-              <Text style={styles.date}>
-                التاريخ {this.props.activity.date}{" "}
-              </Text>
-              <Text style={styles.date}>الوقت {this.props.activity.time} </Text>
-              <TouchableOpacity
-                onPress={() =>
+              <Text style={styles.date}>التاريخ</Text>
+              <Text style={styles.date}>{this.props.activity.date}</Text>
+              <Text style={styles.date}> {this.props.activity.time} </Text>
+
+              <ProfileButton
+                name={this.props.activity.orgnizer.user.username}
+                img={this.props.activity.orgnizer.img}
+                onProfileClick={() =>
                   this.props.fetchProfile(
                     this.props.activity.orgnizer.user.id,
 
                     this.props.navigation
                   )
                 }
-              >
-                <View style={styles.profile}>
-                  <Image
-                    style={styles.avatar}
-                    source={
-                      this.props.activity.orgnizer.img
-                        ? { uri: this.props.activity.orgnizer.img }
-                        : {
-                            uri:
-                              "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
-                          }
-                    }
-                  />
-
-                  <Text style={styles.name}>
-                    {this.props.activity.orgnizer.user.username}
-                  </Text>
-                </View>
-              </TouchableOpacity>
+              />
             </View>
 
             <DetailPageButton
               user={this.props.user}
               organizerID={this.props.activity.orgnizer.user.id}
-              userID={this.props.user.user_id}
+              userID={this.props.user && this.props.user.user_id}
               onLogin={() => this.props.navigation.navigate("Login")}
               onEdit={() => this.setState({ edit: true })}
               onInvite={() => this.handlePress(invite)}
