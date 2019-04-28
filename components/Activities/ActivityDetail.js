@@ -96,8 +96,23 @@ class ActivityDetail extends Component {
               <Text style={styles.date}>التاريخ</Text>
               <Text style={styles.date}>{this.props.activity.date}</Text>
               <Text style={styles.date}> {this.props.activity.time} </Text>
-              {this.props.user.user_id !==
-                this.props.activity.orgnizer.user.id && (
+
+              {this.props.user ? (
+                this.props.user.user_id !==
+                  this.props.activity.orgnizer.user.id && (
+                  <ProfileButton
+                    name={this.props.activity.orgnizer.user.username}
+                    img={this.props.activity.orgnizer.img}
+                    onProfileClick={() =>
+                      this.props.fetchProfile(
+                        this.props.activity.orgnizer.user.id,
+
+                        this.props.navigation
+                      )
+                    }
+                  />
+                )
+              ) : (
                 <ProfileButton
                   name={this.props.activity.orgnizer.user.username}
                   img={this.props.activity.orgnizer.img}
