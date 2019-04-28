@@ -2,6 +2,7 @@
 import axios from "axios";
 // Decrypt Token
 import jwt_decode from "jwt-decode";
+import { Alert } from "react-native";
 // ActionTypes
 import * as actionTypes from "./actionTypes";
 import { AsyncStorage } from "react-native";
@@ -51,10 +52,15 @@ export const login = (userData, navigation) => {
 
       navigation.replace("MyProfile");
     } catch (error) {
-      console.error(error);
+      Alert.alert(
+        "حدث خطأ ما",
+        "أعد إدخال البيانات",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
     }
   };
-};
+}; //CHANGE THIS > HANLE AUTH ERROR
 
 export const signup = (userData, navigation) => {
   return async dispatch => {
@@ -63,10 +69,15 @@ export const signup = (userData, navigation) => {
 
       dispatch(login(userData, navigation));
     } catch (error) {
-      console.error(error);
+      Alert.alert(
+        "حدث خطأ ما",
+        "أعد إدخال البيانات",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
     }
   };
-};
+}; //CHANGE THIS > HANLE AUTH ERROR
 
 export const logout = navigation => {
   setAuthToken();

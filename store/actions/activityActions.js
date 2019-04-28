@@ -61,7 +61,12 @@ export const createActivity = (activityOBJ, navigation) => {
       await instance.post("/api/activity/create/", activityOBJ);
       navigation.replace("Categories");
     } catch (error) {
-      console.error("Something went wrong (creating)", error);
+      Alert.alert(
+        "حدث خطأ ما",
+        "أعد إدخال البيانات",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      ); //CHANGE THIS > HANDLE ERROR
     }
   };
 };
