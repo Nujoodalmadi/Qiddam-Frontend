@@ -24,7 +24,7 @@ class DetailPageGender extends Component {
             flex: 1,
             flexDirection: "row",
             justifyContent: "center",
-            maxWidth: 100
+            maxWidth: 50
           }}
         >
           <View style={styles.female}>
