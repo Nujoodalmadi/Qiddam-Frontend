@@ -111,3 +111,8 @@ export const fetchProfile = (profileID, navigation) => {
     }
   };
 };
+
+// export const error = error => ({
+//   type: actionTypes.ERROR,
+//   payload: error
+// });

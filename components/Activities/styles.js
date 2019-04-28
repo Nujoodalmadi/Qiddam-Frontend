@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
   },
   postContentSub: {
     flex: 1,
-    padding: 30,
+    padding: 10,
     flexDirection: "column",
     backgroundColor: "#f7f8f9",
     alignSelf: "center",
     width: 260,
     borderRadius: 16,
-    marginTop: 20,
+
     fontSize: 16,
-    marginTop: 10,
+    marginTop: 5,
     textAlign: "right"
   },
 
@@ -150,9 +150,9 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     marginLeft: 3,
     marginTop: 3,
     marginBottom: 3
@@ -319,27 +319,29 @@ const styles = StyleSheet.create({
   },
 
   peopleCount: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 28,
+    height: 28,
+
+    flexDirection: "column",
+    borderRadius: 14,
     marginRight: 5,
     backgroundColor: "#04BFBF",
     alignItems: "center",
     justifyContent: "center"
   },
   female: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     marginLeft: 5,
     backgroundColor: "#8768A6",
     alignItems: "center",
     justifyContent: "center"
   },
   male: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     marginLeft: 5,
 
     backgroundColor: "#049DD9",
@@ -351,12 +353,11 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#efefef",
     alignSelf: "center",
     width: 300,
     maxHeight: 80,
     borderRadius: 16,
-    marginTop: 20
+    marginTop: 5
   },
   divider: {
     backgroundColor: "white",

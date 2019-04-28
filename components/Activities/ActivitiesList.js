@@ -88,11 +88,7 @@ class ActivitiesList extends Component {
     if (!this.props.categoryActivities) {
       return <Spinner />;
     } else {
-      this.props.user
-        ? (filterCategoryActivities = this.props.categoryActivities.filter(
-            item => item.gender === "ذكر" || item.gender === "الكل"
-          ))
-        : (filterCategoryActivities = this.props.categoryActivities); // change this such that it corresponds to:   state.authReducer.user.gender
+      const filterCategoryActivities = this.props.categoryActivities;
 
       return (
         <ImageBackground style={styles.background}>
@@ -112,7 +108,6 @@ class ActivitiesList extends Component {
 const mapStateToProps = state => {
   return {
     categoryActivities: state.activityReducer.categoryActivities.activities,
-    // userGender: state.authReducer.user.gender //add this to backend
     categoryID: state.activityReducer.categoryID
   };
 };

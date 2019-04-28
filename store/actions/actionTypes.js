@@ -21,3 +21,6 @@ export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 
 //Invite
 export const CREATE_INVITE = "CREATE_INVITE";
+
+//Error
+export const ERROR = "ERROR";

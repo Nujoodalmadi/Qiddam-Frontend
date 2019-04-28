@@ -86,7 +86,7 @@ class ActivityDetail extends Component {
                 <Text>{this.props.activity.description}</Text>
               </View>
 
-              <Text style={styles.date}>المطلوب</Text>
+              <Text style={styles.date}>العدد المطلوب</Text>
               <DetailPageGender
                 peopleCount={this.props.activity.number_of_people}
                 gender={this.props.activity.gender}
