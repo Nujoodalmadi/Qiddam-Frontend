@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "white",
     padding: 3,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     borderRadius: 50,
     padding: 10
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     width: 250,
-    backgroundColor: "#efefef",
+    backgroundColor: "#f7f7f7",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 25,
     flexDirection: "column",
-    backgroundColor: "#efefef",
+    backgroundColor: "#f7f7f7",
     alignSelf: "center",
     width: 300,
     borderRadius: 16,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     flexDirection: "column",
-    backgroundColor: "#efefef",
+    backgroundColor: "#f7f7f7",
     alignSelf: "center",
     maxWidth: 360,
     borderRadius: 16,
@@ -216,7 +216,8 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
     borderRadius: 15,
-    backgroundColor: "#efefef"
+    backgroundColor: "#f7f7f7"
+    // "#efefef"
   },
   activityList: {
     flexGrow: 1,
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
     borderRadius: 15,
-    backgroundColor: "#efefef",
+    backgroundColor: "#f7f7f7",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -247,10 +248,9 @@ const styles = StyleSheet.create({
     fontWeight: "200"
   },
   titleTextCategory: {
+    fontWeight: "bold",
     color: "#D9663D",
     fontSize: 20,
-
-    fontWeight: "200",
     borderRadius: 30,
     borderWidth: 6,
     padding: 12,
@@ -265,8 +265,8 @@ const styles = StyleSheet.create({
   },
 
   titleStyle: {
-    fontWeight: "100",
-    fontSize: 10,
+    fontWeight: "bold",
+    fontSize: 15,
     alignSelf: "center",
     color: "#8768A6"
   },
@@ -279,13 +279,12 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 18,
     padding: 5,
     color: "white"
   },
   addButton: {
     borderRadius: 20,
-    width: 60,
     alignSelf: "center",
     backgroundColor: "rgba(242, 202, 80, 1)",
     shadowColor: "#8768A6",
