@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ModalSelector from "react-native-modal-selector";
 import { TextInput } from "react-native";
+import styles from "../Activities/styles";
 
 class GenderSelector extends Component {
   render() {
@@ -17,6 +18,7 @@ class GenderSelector extends Component {
         accessible={true}
         cancelButtonAccessibilityLabel={"Cancel Button"}
         onChange={this.props.genderChange}
+        selectedItemTextStyle={styles.selectedText}
       >
         <TextInput
           editable={false}

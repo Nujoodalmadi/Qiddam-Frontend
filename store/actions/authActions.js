@@ -36,7 +36,6 @@ export const checkForExpiredToken = () => {
 };
 
 export const login = (userData, navigation) => {
-  console.log(userData);
   return async dispatch => {
     try {
       let response = await axios.post(
@@ -58,7 +57,6 @@ export const login = (userData, navigation) => {
 };
 
 export const signup = (userData, navigation) => {
-  console.log(userData);
   return async dispatch => {
     try {
       await axios.post("http://127.0.0.1:8000/api/signup/", userData);
@@ -72,7 +70,7 @@ export const signup = (userData, navigation) => {
 
 export const logout = navigation => {
   setAuthToken();
-  navigation.navigate("Login");
+  navigation.replace("Login");
   return setCurrentUser();
 };
 

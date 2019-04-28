@@ -21,6 +21,11 @@ class TimeSelector extends Component {
           },
           dateInput: {
             borderWidth: 0
+          },
+          dateText: {
+            fontSize: 10,
+            fontWeight: "bold",
+            color: "white"
           }
         }}
         cancelBtnText="Cancel"

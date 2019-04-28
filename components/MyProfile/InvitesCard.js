@@ -23,6 +23,9 @@ class InvitesCard extends Component {
     <ListItem
       title={item.activity.title}
       subtitle={item.status}
+      containerStyle={styles.itemContainer}
+      TitleStyle={styles.title}
+      subtitleStyle={styles.subtitle}
       rightIcon={
         <Image
           style={styles.qiddam}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 //
-import { View, Image, ScrollView, Button } from "react-native";
+import { View, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
 //Styles
 import styles from "../MyProfile/style";
@@ -24,7 +24,7 @@ class MyProfile extends Component {
 
     return (
       <ScrollView scrollEnabled={false} style={styles.pageView}>
-        <View style={styles.container}>
+        <View>
           <View style={styles.header}>
             <Image
               style={{ width: 420, height: 200 }}
@@ -42,23 +42,20 @@ class MyProfile extends Component {
                   }
             }
           />
-          <Button
-            onPress={this.refechProfile}
-            title="refresh"
-            color="#841584"
-          />
         </View>
+
         <View style={styles.body}>
           <View style={styles.bodyContent}>
-            <Text style={styles.name}>{profile.user.username}</Text>
+            <Text onPress={this.refechProfile} style={styles.name}>
+              {profile.user.username}
+            </Text>
             <Text style={styles.info}>
-              {profile.user.first_name + " " + profile.user.last_name}
+              {profile.user.first_name} {profile.user.last_name}
             </Text>
-            <Text style={styles.info}> {profile.bio} </Text>
-            <Text style={styles.description}>{profile.bio}</Text>
             <Text style={styles.description}>
-              {profile.gender} {profile.date_of_birth}
+              {profile.bio}-{profile.gender}{" "}
             </Text>
+            <Text style={styles.description}>{profile.date_of_birth}</Text>
             {/* <Button
               onPress={() => alert("HElloo.. am the update button")}
               title="Update"
@@ -67,19 +64,30 @@ class MyProfile extends Component {
             /> */}
           </View>
         </View>
-        <Text style={styles.qiddamWalla}>أنشطتي</Text>
-        <MyActivities />
-        <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
-        <View style={styles.flatList}>
-          <InvitesCard />
+        <View style={styles.postContent}>
+          <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
+          <View style={styles.flatList}>
+            <InvitesCard />
+          </View>
         </View>
+        <View style={styles.postContent}>
+          <Text style={styles.qiddamWalla}>أنشطتي</Text>
+          <MyActivities />
+        </View>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={() => this.props.logout(this.props.navigation)}
+        >
+          <Text style={styles.logoutButtonText}>خروج</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchMyProfile: () => dispatch(actionCreators.fetchMyProfile())
+  fetchMyProfile: () => dispatch(actionCreators.fetchMyProfile()),
+  logout: navigation => dispatch(actionCreators.logout(navigation))
 });
 
 const mapStateToProps = state => ({
