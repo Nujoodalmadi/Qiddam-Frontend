@@ -61,11 +61,7 @@ const mapStateToProps = state => ({
   profile: state.authReducer.profile
 });
 
-const mapDispatchToProps = dispatch => ({
-  //  fetchProfile: () => dispatch(actionCreators.fetchProfile())
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Profile);
