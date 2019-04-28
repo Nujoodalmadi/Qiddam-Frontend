@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   shareButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "700"
   },
   qiddam: {
@@ -426,6 +426,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9663D",
     alignItems: "center",
     justifyContent: "center"
+  },
+  selectedText: {
+    fontSize: 10,
+    fontWeight: "bold",
+    color: "white"
   }
 });
 

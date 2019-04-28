@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ScrollView } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import styles from "../MyProfile/style";
 import { withNavigation } from "react-navigation";
@@ -17,6 +17,9 @@ class MyActivities extends Component {
             key={i}
             title={l.title}
             subtitle={l.date}
+            containerStyle={styles.itemContainer}
+            TitleStyle={styles.title}
+            subtitleStyle={styles.subtitle}
             onPress={() => {
               this.props.activityDetails(l.id),
                 this.props.navigation.navigate("ActivityDetail");

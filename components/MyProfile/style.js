@@ -22,18 +22,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginTop: 130
   },
-  name: {
-    fontSize: 22,
-    color: "#FFFFFF",
-    fontWeight: "600"
-  },
+
   body: {
     marginTop: 40
   },
   bodyContent: {
     flex: 1,
     alignItems: "center",
-    padding: 30
+    padding: 10
   },
   name: {
     fontSize: 28,
@@ -42,8 +38,8 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 16,
-    color: "#00BFFF",
-    marginTop: 10
+    color: "black",
+    marginTop: 4
   },
   description: {
     fontSize: 16,
@@ -74,15 +70,67 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30
   },
-  flatList: {
-    maxHeight: 200
-  },
   qiddamWalla: {
     fontSize: 20,
     color: "#D9663D",
     textAlign: "right",
     marginRight: 14,
     fontWeight: "bold"
+  },
+
+  flatList: {
+    maxHeight: 200
+  },
+  listItem: {
+    marginBottom: 5,
+    borderRadius: 20,
+    backgroundColor: "#efefef"
+  },
+
+  postContent: {
+    flex: 1,
+    padding: 5,
+    flexDirection: "column",
+    backgroundColor: "#efefef",
+    alignSelf: "center",
+    width: 350,
+    maxHeight: 180,
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  title: {
+    fontSize: 20,
+    color: "#696969",
+    fontWeight: "500"
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#696969"
+  },
+  itemContainer: {
+    borderRadius: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    marginBottom: 5
+  },
+  logoutButton: {
+    borderRadius: 20,
+    width: 60,
+    alignSelf: "center",
+    backgroundColor: "rgba(242, 202, 80, 1)",
+    shadowColor: "#8768A6",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22
+  },
+  logoutButtonText: {
+    textAlign: "center",
+    fontSize: 15,
+    padding: 5,
+    color: "white"
   }
 });
 
