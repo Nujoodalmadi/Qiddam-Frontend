@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Text, View, Image, Content, ScrollView } from "react-native";
 import styles from "../MyProfile/style";
 import { Spinner } from "native-base";
+import MyActivities from "../MyProfile/MyActivities";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -45,6 +46,10 @@ class Profile extends Component {
                 {profile.user.first_name + profile.user.last_name}
               </Text>
               <Text style={styles.description}>{profile.bio}</Text>
+              <View style={styles.postContent}>
+                <Text style={styles.qiddamWalla}>أنشطتي</Text>
+                <MyActivities activities={this.props.profile.activities} />
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -56,11 +61,7 @@ const mapStateToProps = state => ({
   profile: state.authReducer.profile
 });
 
-const mapDispatchToProps = dispatch => ({
-  //  fetchProfile: () => dispatch(actionCreators.fetchProfile())
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Profile);

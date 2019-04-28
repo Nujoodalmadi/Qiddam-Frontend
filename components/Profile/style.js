@@ -61,6 +61,25 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
     color: "#00BFFF"
+  },
+  postContent: {
+    flex: 1,
+    padding: 5,
+    flexDirection: "column",
+    backgroundColor: "#efefef",
+    alignSelf: "center",
+    width: 350,
+    maxHeight: 180,
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  qiddamWalla: {
+    fontSize: 20,
+    color: "#D9663D",
+    textAlign: "right",
+    marginRight: 14,
+    fontWeight: "bold"
   }
 });
 

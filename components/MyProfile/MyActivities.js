@@ -8,7 +8,7 @@ import * as actionCreators from "../../store/actions";
 
 class MyActivities extends Component {
   render() {
-    list = this.props.profile.activities;
+    list = this.props.activities;
 
     return (
       <ScrollView style={styles.flatList}>
@@ -36,12 +36,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.activityDetails(activityID))
 });
 
-const mapStateToProps = state => ({
-  profile: state.authReducer.myprofile
-});
 export default withNavigation(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(MyActivities)
 );
