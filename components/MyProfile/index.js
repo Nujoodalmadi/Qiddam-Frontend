@@ -72,7 +72,7 @@ class MyProfile extends Component {
         </View>
         <View style={styles.postContent}>
           <Text style={styles.qiddamWalla}>أنشطتي</Text>
-          <MyActivities />
+          <MyActivities activities={this.props.profile.activities} />
         </View>
         <TouchableOpacity
           style={styles.logoutButton}
