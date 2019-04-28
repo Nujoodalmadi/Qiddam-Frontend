@@ -4,7 +4,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   user: null,
   profile: null,
-  myprofile: null
+  myprofile: null,
+  error: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         myprofile: action.payload
+      };
+    case actionTypes.ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;
