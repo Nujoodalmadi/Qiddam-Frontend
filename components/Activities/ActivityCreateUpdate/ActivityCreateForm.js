@@ -16,6 +16,18 @@ import GenderSelector from "../../Util/GenderSelector";
 class ActivityCreateForm extends Component {
   async componentDidMount() {
     await this.props.fetchCategories();
+    let activityEdit = this.props.navigation.getParam("activity");
+    activityEdit &&
+      this.setState({
+        number_of_people: activityEdit.number_of_people,
+        description: activityEdit.description,
+        location: activityEdit.location,
+        category: activityEdit.category,
+        gender: activityEdit.gender,
+        title: activityEdit.title,
+        time: activityEdit.time,
+        date: activityEdit.date
+      });
   }
 
   static navigationOptions = {
@@ -39,7 +51,7 @@ class ActivityCreateForm extends Component {
   };
 
   renderButton = () => {
-    if (this.props.edit) {
+    if (this.props.navigation.getParam("edit")) {
       return (
         <Button onPress={this.handleUpdate} style={styles.shareButton}>
           <Text style={styles.shareButtonText}>تحديث</Text>
@@ -57,27 +69,25 @@ class ActivityCreateForm extends Component {
   state = {
     number_of_people: "",
     description: "",
-    category: "",
     location: "",
+    category: "",
     gender: "",
     title: "",
-    date: "",
-    time: ""
+    time: "",
+    date: ""
   };
 
   handleUpdate = async () => {
     await this.props.updateActivity(
-      this.props.activity.id,
+      this.props.navigation.getParam("activity").id,
       this.state,
       this.props.navigation
     );
-    this.props.toggleEdit();
   };
 
   handleCreate = async () => {
     this.props.createActivity(this.state, this.props.navigation);
   };
-  // style={styles.shareButton}
 
   render() {
     if (!this.props.categories) {
@@ -123,6 +133,7 @@ class ActivityCreateForm extends Component {
                 <Input
                   style={styles.input}
                   autoCorrect={false}
+                  value={this.state.number_of_people.toString()}
                   autoCapitalize="none"
                   onChangeText={number_of_people =>
                     this.setState({ number_of_people })

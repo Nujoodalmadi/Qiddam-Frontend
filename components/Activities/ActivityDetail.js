@@ -46,15 +46,6 @@ class ActivityDetail extends Component {
       this.props.navigation.replace("Categories");
   };
 
-  toggleEdit = () => {
-    const newVal = !this.state.edit;
-    this.setState({ edit: newVal });
-  };
-
-  state = {
-    edit: false
-  };
-
   render() {
     const invite = {
       activity: this.props.activity.id,
@@ -70,14 +61,6 @@ class ActivityDetail extends Component {
 
     if (!this.props.activity.orgnizer) {
       return <Spinner />;
-    } else if (this.state.edit) {
-      return (
-        <ActivityCreateForm
-          activity={this.props.activity}
-          edit={this.state.edit}
-          toggleEdit={this.toggleEdit}
-        />
-      );
     } else {
       // PROFILE
       return (
@@ -139,7 +122,12 @@ class ActivityDetail extends Component {
               organizerID={this.props.activity.orgnizer.user.id}
               userID={this.props.user && this.props.user.user_id}
               onLogin={() => this.props.navigation.navigate("Login")}
-              onEdit={() => this.setState({ edit: true })}
+              onEdit={() =>
+                this.props.navigation.navigate("ActivityCreate", {
+                  activity: this.props.activity,
+                  edit: true
+                })
+              }
               onInvite={() => this.handlePress(invite)}
               onDelete={this.handleDelete}
             />

@@ -1,4 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
+import { resetActivityAdd } from "../actions/activityActions";
 
 const initialState = {
   categories: [],

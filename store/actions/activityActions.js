@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { Alert } from "react-native";
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8000"
@@ -56,7 +57,6 @@ export const activityDetails = activityID => {
 
 export const createActivity = (activityOBJ, navigation) => {
   return async () => {
-    console.log(activityOBJ);
     try {
       await instance.post("/api/activity/create/", activityOBJ);
       navigation.replace("Categories");
@@ -77,7 +77,6 @@ export const catchCategoryID = categoryID => ({
 });
 
 export const updateActivity = (activityID, activityUpdate, navigation) => {
-  console.log(activityUpdate);
   return async dispatch => {
     try {
       const res = await instance.put(
@@ -90,9 +89,14 @@ export const updateActivity = (activityID, activityUpdate, navigation) => {
         type: actionTypes.UPDATE_ACTIVITY,
         payload: activity
       });
-      navigation.replace("MyProfile");
+      navigation.replace("Categories");
     } catch (error) {
-      console.error("Something went wrong (updating)", error);
+      Alert.alert(
+        "حدث خطأ ما",
+        "أعد إدخال البيانات",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      ); //CHANGE THIS > HANDLE ERROR
     }
   };
 };

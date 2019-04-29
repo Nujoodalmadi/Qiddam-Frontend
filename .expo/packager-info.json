@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 22104,
-  "expoServerNgrokUrl": "https://v7-e9m.anonymous.qiddam-frontend.exp.direct",
-  "packagerNgrokUrl": "https://packager.v7-e9m.anonymous.qiddam-frontend.exp.direct",
-  "ngrokPid": 22124,
+  "devToolsPort": 19003,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://5r-na7.anonymous.qiddam-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.5r-na7.anonymous.qiddam-frontend.exp.direct",
+  "ngrokPid": 52762,
   "webpackServerPort": null
 }
