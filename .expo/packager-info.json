@@ -3,8 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://gh-9rt.anonymous.qiddam-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.gh-9rt.anonymous.qiddam-frontend.exp.direct",
+  "ngrokPid": 6030,
   "webpackServerPort": null
 }

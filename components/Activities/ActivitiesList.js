@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { ListItem } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
-import { Spinner } from "native-base";
+import { Loading } from "../Loading/index";
 
 class ActivitiesList extends Component {
   async componentDidMount() {
@@ -86,7 +86,7 @@ class ActivitiesList extends Component {
 
   render() {
     if (!this.props.categoryActivities) {
-      return <Spinner />;
+      return <Loading />;
     } else {
       const filterCategoryActivities = this.props.categoryActivities;
 

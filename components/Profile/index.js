@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Text, View, Image, Content, ScrollView } from "react-native";
 import styles from "../MyProfile/style";
-import { Spinner } from "native-base";
 import MyActivities from "../MyProfile/MyActivities";
+import { Loading } from "../Loading/index";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -16,7 +16,7 @@ class Profile extends Component {
   render() {
     const profile = this.props.profile;
     if (!this.props.profile) {
-      <Spinner />;
+      <Loading />;
     } else {
       return (
         <ScrollView>

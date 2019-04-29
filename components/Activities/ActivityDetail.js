@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, Image, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  ImageBackground,
+  FlatList
+} from "react-native";
 import { Divider } from "react-native-elements";
 import styles from "./styles";
 import { connect } from "react-redux";
@@ -9,6 +16,9 @@ import ActivityCreateForm from "./ActivityCreateUpdate/ActivityCreateForm";
 import DetailPageButton from "../Util/DetailPageButton";
 import ProfileButton from "../Util/ProfileButton";
 import DetailPageGender from "../Util/DetailPageGender";
+import { ListItem } from "react-native-elements";
+import TouchableScale from "react-native-touchable-scale";
+import { Loading } from "../Loading/index";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -62,7 +72,7 @@ class ActivityDetail extends Component {
     };
 
     if (!this.props.activity.orgnizer) {
-      return <Spinner />;
+      return <Loading />;
     } else if (this.state.edit) {
       return (
         <ActivityCreateForm

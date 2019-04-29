@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Text, View, Image, ImageBackground } from "react-native";
 import { Divider } from "react-native-elements";
 import * as actionCreators from "../../../store/actions";
-
+import { Loading } from "../Loading/index";
 import styles from "../styles";
-import { Input, Form, Item, Button, Spinner } from "native-base";
+import { Input, Form, Item, Button } from "native-base";
 
 //Components:
 import TimeSelector from "../../Util/TimeSelector";
@@ -81,7 +81,7 @@ class ActivityCreateForm extends Component {
 
   render() {
     if (!this.props.categories) {
-      return <Spinner />;
+      return <Loading />;
     } else {
       return (
         <ImageBackground style={styles.background}>
