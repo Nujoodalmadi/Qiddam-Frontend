@@ -28,11 +28,11 @@ class Signup extends Component {
     }
   };
 
-  // onValueChangeDOB = dateStr => {
-  //   this.setState({
-  //     profile: { ...this.state.profile, date_of_birth: dateStr }
-  //   });
-  // };
+  onValueChangeDOB = dateStr => {
+    this.setState({
+      profile: { ...this.state.profile, date_of_birth: dateStr }
+    });
+  };
 
   onValueChangeGender = option => {
     this.setState({ profile: { ...this.state.profile, gender: option.label } });

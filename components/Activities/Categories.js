@@ -14,6 +14,10 @@ import { ListItem } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
 
 class Categories extends Component {
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
+
   static navigationOptions = {
     headerBackground: (
       <Image
@@ -33,15 +37,28 @@ class Categories extends Component {
       fontWeight: "bold"
     }
   };
+
   state = {
-    isFetching: false
+    isFetching: false,
+
+    activityAdd: {
+      number_of_people: "",
+      description: "",
+      category: "",
+      location: "",
+      gender: "",
+      title: "",
+      time: "",
+      date: ""
+    }
   };
-  componentDidMount() {
-    this.props.fetchCategories();
-  }
+
   handlePress = async categoryID => {
     this.props.catchCategoryID(categoryID);
     this.props.navigation.navigate("ActivitiesList");
+  };
+  handleAdd = async () => {
+    this.props.navigation.navigate("ActivityCreate");
   };
 
   async onRefresh() {
@@ -99,10 +116,7 @@ class Categories extends Component {
   render() {
     return (
       <ImageBackground style={styles.background}>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => this.props.navigation.navigate("ActivityCreate")}
-        >
+        <TouchableOpacity style={styles.addButton} onPress={this.handleAdd}>
           <Text style={styles.addButtonText}>أنشِئ دعوة</Text>
         </TouchableOpacity>
 

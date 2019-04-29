@@ -22,17 +22,15 @@ class UpdateProfile extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.state === prevState) {
-      this.setState({
-        user: {
-          first_name: this.props.profile.user.first_name,
-          last_name: this.props.profile.user.last_name,
-          email: this.props.profile.user.email
-        },
-        img: this.props.profile.img,
-        bio: this.props.profile.bio
-      });
-    }
+    this.setState({
+      user: {
+        first_name: this.props.profile.user.first_name,
+        last_name: this.props.profile.user.last_name,
+        email: this.props.profile.user.email
+      },
+      img: this.props.profile.img,
+      bio: this.props.profile.bio
+    });
   }
 
   static navigationOptions = {
