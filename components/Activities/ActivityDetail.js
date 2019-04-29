@@ -9,6 +9,7 @@ import ActivityCreateForm from "./ActivityCreateUpdate/ActivityCreateForm";
 import DetailPageButton from "../Util/DetailPageButton";
 import ProfileButton from "../Util/ProfileButton";
 import DetailPageGender from "../Util/DetailPageGender";
+import InviteRequest from "./InviteRequest";
 
 class ActivityDetail extends Component {
   static navigationOptions = {
@@ -51,6 +52,12 @@ class ActivityDetail extends Component {
       status: "في انتظار القبول",
       guest: ""
     };
+
+    const invites =
+      this.props.activity.invites &&
+      this.props.activity.invites.map(invite => (
+        <InviteRequest key={invite.id++} invite={invite} />
+      ));
 
     if (!this.props.activity.orgnizer) {
       return <Spinner />;
@@ -124,6 +131,9 @@ class ActivityDetail extends Component {
               onInvite={() => this.handlePress(invite)}
               onDelete={this.handleDelete}
             />
+            {this.props.activity.invites && (
+              <View style={styles.postContentSub}>{invites}</View>
+            )}
           </View>
         </ScrollView>
       );
