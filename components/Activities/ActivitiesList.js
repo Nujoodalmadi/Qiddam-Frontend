@@ -43,8 +43,8 @@ class ActivitiesList extends Component {
       this.setState({ isFetching: false });
   }
 
-  handlePress = activityID => {
-    this.props.activityDetails(activityID),
+  handlePress = async activityID => {
+    await this.props.activityDetails(activityID),
       this.props.navigation.navigate("ActivityDetail");
   };
   keyExtractor = (item, index) => index.toString();
@@ -108,7 +108,8 @@ class ActivitiesList extends Component {
 const mapStateToProps = state => {
   return {
     categoryActivities: state.activityReducer.categoryActivities.activities,
-    categoryID: state.activityReducer.categoryID
+    categoryID: state.activityReducer.categoryID,
+    user: state.authReducer.user
   };
 };
 const mapDispatchToProps = dispatch => ({

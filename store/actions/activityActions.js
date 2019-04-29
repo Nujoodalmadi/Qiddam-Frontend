@@ -42,7 +42,7 @@ export const fetchActivitiesCat = categoryID => {
 export const activityDetails = activityID => {
   return async dispatch => {
     try {
-      const res = await instance.get(`/api/${activityID}`);
+      const res = await instance.get(`/api/${activityID}/`);
       const activity = res.data;
       dispatch({
         type: actionTypes.ACTIVITY_DETAILS,
