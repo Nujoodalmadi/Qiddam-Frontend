@@ -6,7 +6,7 @@ const instance = axios.create({
   baseURL: "http://127.0.0.1:8000"
 });
 
-//this will fetch all activities
+//this will fetch 4 (most recent) activities
 export const fetchCategories = () => {
   return async dispatch => {
     try {
@@ -18,7 +18,7 @@ export const fetchCategories = () => {
         payload: categories
       });
     } catch (error) {
-      console.error("Somthing went wrong with ", error);
+      console.error("Somthing went wrong white fetching cat. ", error);
     }
   };
 };
@@ -27,12 +27,11 @@ export const fetchCategories = () => {
 export const fetchActivitiesCat = categoryID => {
   return async dispatch => {
     try {
-      const res = await instance.get("/api/categories/");
+      const res = await instance.get(`/api/category/${categoryID}/`);
       const activities = res.data;
       dispatch({
         type: actionTypes.FETCH_CATEGORY_ACTIVITIES,
-        payload: activities,
-        categoryID: categoryID
+        payload: activities
       });
     } catch (error) {
       console.error("Something went wrong while fetching activities ", error);

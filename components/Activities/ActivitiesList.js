@@ -39,7 +39,7 @@ class ActivitiesList extends Component {
 
   async onRefresh() {
     this.setState({ isFetching: true });
-    await this.props.fetchActivitiesCat(this.props.categoryID), //this must be changed
+    await this.props.fetchActivitiesCat(this.props.categoryID),
       this.setState({ isFetching: false });
   }
 
@@ -57,9 +57,7 @@ class ActivitiesList extends Component {
       tension={100}
       activeScale={0.95}
       containerStyle={styles.activityList}
-      subtitle={
-        item.orgnizer.user.username ? item.orgnizer.user.username : "username"
-      }
+      subtitle={item.orgnizer.user.username && item.orgnizer.user.username}
       subtitleStyle={styles.subtitleStyleOrg}
       leftAvatar={
         item.orgnizer.img
@@ -88,15 +86,13 @@ class ActivitiesList extends Component {
     if (!this.props.categoryActivities) {
       return <Spinner />;
     } else {
-      const filterCategoryActivities = this.props.categoryActivities;
-
       return (
         <ImageBackground style={styles.background}>
           <FlatList
             onRefresh={() => this.onRefresh()}
             refreshing={this.state.isFetching}
             keyExtractor={this.keyExtractor}
-            data={filterCategoryActivities}
+            data={this.props.categoryActivities}
             renderItem={this.renderItem}
           />
         </ImageBackground>
@@ -107,7 +103,7 @@ class ActivitiesList extends Component {
 
 const mapStateToProps = state => {
   return {
-    categoryActivities: state.activityReducer.categoryActivities.activities,
+    categoryActivities: state.activityReducer.categoryActivities,
     categoryID: state.activityReducer.categoryID
   };
 };
