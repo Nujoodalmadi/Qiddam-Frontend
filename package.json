@@ -17,6 +17,7 @@
     "react-native-24h-timepicker": "^1.0.0",
     "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^1.1.0",
+    "react-native-modal": "^10.0.0",
     "react-native-modal-selector": "^1.0.3",
     "react-native-touchable-scale": "^2.0.0",
     "react-navigation": "^3.8.1",

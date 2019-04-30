@@ -17,13 +17,9 @@ const activities = (state = initialState, action) => {
         categories: action.payload
       };
     case actionTypes.FETCH_CATEGORY_ACTIVITIES:
-      const allCategories = action.payload;
-      const categoryActivities = allCategories.find(
-        category => action.categoryID === category.id
-      );
       return {
         ...state,
-        categoryActivities: categoryActivities
+        categoryActivities: action.payload
       };
     case actionTypes.ACTIVITY_DETAILS:
       return {

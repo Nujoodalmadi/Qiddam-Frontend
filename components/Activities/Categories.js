@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
+import Modal from "react-native-modal";
 import styles from "./styles";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
@@ -40,6 +41,7 @@ class Categories extends Component {
 
   state = {
     isFetching: false,
+    isModalVisible: false,
 
     activityAdd: {
       number_of_people: "",
@@ -52,6 +54,11 @@ class Categories extends Component {
       date: ""
     }
   };
+
+  _toggleModal = () =>
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    });
 
   handlePress = async categoryID => {
     this.props.catchCategoryID(categoryID);
@@ -99,7 +106,7 @@ class Categories extends Component {
     <ListItem
       rightTitle={item.title}
       subtitle={this.renderGroupMembers(item)}
-      title="الأعضاء النشيطين "
+      title="الأعضاء المتفاعلين حاليًا "
       titleStyle={styles.titleStyle}
       subtitleContainerStyle={styles.subtitleContainer}
       Component={TouchableScale}
@@ -107,7 +114,8 @@ class Categories extends Component {
       tension={100}
       activeScale={0.9}
       containerStyle={styles.categoryList}
-      onPress={() => this.handlePress(item.id)} //this should be sent to the store
+      onPress={() => this.handlePress(item.id)}
+      onLongPress={this._toggleModal}
       rightTitleStyle={styles.titleTextCategory}
       rightTitleContainerStyle={styles.titleCategory}
     />
@@ -116,6 +124,16 @@ class Categories extends Component {
   render() {
     return (
       <ImageBackground style={styles.background}>
+        <Modal coverScreen={false} isVisible={this.state.isModalVisible}>
+          <View style={{ height: 100, width: 100 }}>
+            <Text>Hello!</Text>
+
+            <TouchableOpacity onPress={this._toggleModal}>
+              <Text>Hide me!</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+
         <TouchableOpacity style={styles.addButton} onPress={this.handleAdd}>
           <Text style={styles.addButtonText}>أنشِئ دعوة</Text>
         </TouchableOpacity>
@@ -140,8 +158,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(actionCreators.fetchCategories()),
-  fetchActivitiesCat: categoryID =>
-    dispatch(actionCreators.fetchActivitiesCat(categoryID)),
   catchCategoryID: categoryID =>
     dispatch(actionCreators.catchCategoryID(categoryID))
 });
