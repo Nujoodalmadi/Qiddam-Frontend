@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 //
 import { View, Image, ScrollView, TouchableOpacity } from "react-native";
-import { Text } from "native-base";
+import { Text, Spinner } from "native-base";
 //Styles
 import styles from "../MyProfile/style";
 //Componenets
@@ -22,27 +22,30 @@ class MyProfile extends Component {
   render() {
     const profile = this.props.profile;
 
-    return (
-      <ScrollView scrollEnabled={false} style={styles.pageView}>
-        <View>
-          <View style={styles.header}>
+    if (!this.props.profile) {
+      return <Spinner />;
+    } else {
+      return (
+        <ScrollView scrollEnabled={false} style={styles.pageView}>
+          <View>
+            <View style={styles.header}>
+              <Image
+                style={{ width: 420, height: 200 }}
+                source={require("../../img/header2.png")}
+              />
+            </View>
             <Image
-              style={{ width: 420, height: 200 }}
-              source={require("../../img/header2.png")}
+              style={styles.avatar}
+              source={
+                profile.img
+                  ? { uri: profile.img }
+                  : {
+                      uri:
+                        "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+                    }
+              }
             />
           </View>
-          <Image
-            style={styles.avatar}
-            source={
-              profile.img
-                ? { uri: profile.img }
-                : {
-                    uri:
-                      "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
-                  }
-            }
-          />
-        </View>
 
         <View style={styles.body}>
           <View style={styles.bodyContent}>
@@ -57,31 +60,33 @@ class MyProfile extends Component {
             </Text>
             <Text style={styles.description}>{profile.date_of_birth}</Text>
             {/* <Button
+
               onPress={() => alert("HElloo.. am the update button")}
               title="Update"
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
             /> */}
+            </View>
           </View>
-        </View>
-        <View style={styles.postContent}>
-          <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
-          <View style={styles.flatList}>
-            <InvitesCard />
+          <View style={styles.postContent}>
+            <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
+            <View style={styles.flatList}>
+              <InvitesCard />
+            </View>
           </View>
-        </View>
-        <View style={styles.postContent}>
-          <Text style={styles.qiddamWalla}>أنشطتي</Text>
-          <MyActivities activities={this.props.profile.activities} />
-        </View>
-        <TouchableOpacity
-          style={styles.logoutButton}
-          onPress={() => this.props.logout(this.props.navigation)}
-        >
-          <Text style={styles.logoutButtonText}>خروج</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    );
+          <View style={styles.postContent}>
+            <Text style={styles.qiddamWalla}>أنشطتي</Text>
+            <MyActivities activities={this.props.profile.activities} />
+          </View>
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={() => this.props.logout(this.props.navigation)}
+          >
+            <Text style={styles.logoutButtonText}>خروج</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      );
+    }
   }
 }
 

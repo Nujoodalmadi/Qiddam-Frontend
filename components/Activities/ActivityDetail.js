@@ -56,7 +56,7 @@ class ActivityDetail extends Component {
     const invites =
       this.props.activity.invites &&
       this.props.activity.invites.map(invite => (
-        <InviteRequest key={invite.id++} invite={invite} />
+        <InviteRequest key={invite.user.user.id} invite={invite} />
       ));
 
     if (!this.props.activity.orgnizer) {
@@ -132,7 +132,10 @@ class ActivityDetail extends Component {
               onDelete={this.handleDelete}
             />
             {this.props.activity.invites && (
-              <View style={styles.postContentSub}>{invites}</View>
+              <View style={styles.postContentSub}>
+                <Text>من يبي يجي معاي؟</Text>
+                {invites}
+              </View>
             )}
           </View>
         </ScrollView>

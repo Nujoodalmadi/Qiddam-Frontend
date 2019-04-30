@@ -19,7 +19,7 @@ const setAuthToken = token => {
 
 export const checkForExpiredToken = () => {
   return async dispatch => {
-    const token = AsyncStorage.getItem("token");
+    const token = await AsyncStorage.getItem("token");
 
     if (token) {
       const currentTime = Date.now() / 1000;
@@ -27,8 +27,9 @@ export const checkForExpiredToken = () => {
       const user = jwt_decode(token);
 
       if (user.exp >= currentTime) {
-        dispatch(setCurrentUser(user));
+        await dispatch(setCurrentUser(user));
         setAuthToken(token);
+        await dispatch(fetchMyProfile());
       } else {
         dispatch(logout());
       }
