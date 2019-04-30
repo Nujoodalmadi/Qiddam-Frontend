@@ -6,8 +6,8 @@ import ActivitiesStack from "./ActivitiesStack";
 
 const BottomNav = createBottomTabNavigator(
   {
-    Auth: AuthStack,
-    ActivitiesStack: ActivitiesStack
+    ActivitiesStack: ActivitiesStack,
+    Auth: AuthStack
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({

@@ -12,14 +12,17 @@ import * as actionCreators from "../../store/actions";
 import { connect } from "react-redux";
 
 class Login extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: "rgb(184, 224, 224)"
-    },
-    headerTintColor: "white",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerStyle: {
+        backgroundColor: "rgb(184, 224, 224)"
+      },
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+      // headerLeft: null
+    };
   };
   state = {
     username: "",
@@ -28,6 +31,13 @@ class Login extends Component {
   onClickListener = viewId => {
     Alert.alert("Alert", "Button pressed " + viewId);
   };
+
+  componentDidMount() {
+    if (this.props.user) {
+      return this.props.navigation.replace("MyProfile");
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -80,14 +90,15 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.authReducer.user
+});
 const mapDispatchToProps = dispatch => ({
-
   login: (userData, navigate) =>
     dispatch(actionCreators.login(userData, navigate))
-
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

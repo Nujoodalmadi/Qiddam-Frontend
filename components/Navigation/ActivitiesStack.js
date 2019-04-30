@@ -5,6 +5,7 @@ import ActivitiesList from "../Activities/ActivitiesList";
 import ActivityDetail from "../Activities/ActivityDetail";
 import ActivityCreate from "../Activities/ActivityCreateUpdate/ActivityCreateForm";
 import Profile from "../Profile/index";
+import InviteRequest from "../Activities/InviteRequest";
 
 const ActivitiesStack = createStackNavigator(
   {
