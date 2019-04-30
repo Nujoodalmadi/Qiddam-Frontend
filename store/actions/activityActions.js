@@ -109,3 +109,7 @@ export const deleteActivity = activityID => {
     }
   };
 };
+
+export const activeMembers = () => ({
+  type: actionTypes.ACTIVE_MEMBERS
+});

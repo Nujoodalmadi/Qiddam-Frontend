@@ -53,7 +53,7 @@ class MyProfile extends Component {
               {profile.user.first_name} {profile.user.last_name}
             </Text>
             <Text style={styles.description}>
-              {profile.bio}-{profile.gender}{" "}
+              {profile.bio}-{profile.gender}
             </Text>
             <Text style={styles.description}>{profile.date_of_birth}</Text>
             {/* <Button

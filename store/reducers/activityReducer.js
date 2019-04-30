@@ -6,7 +6,8 @@ const initialState = {
   activity: [],
   categoryActivities: [],
   userActivities: [],
-  categoryID: null
+  categoryID: null,
+  activeMembers: []
 };
 
 const activities = (state = initialState, action) => {
@@ -38,6 +39,15 @@ const activities = (state = initialState, action) => {
     case actionTypes.DELETE_ACTIVITY:
       return {
         ...state
+      };
+    case actionTypes.ACTIVE_MEMBERS:
+      let activeMembersFilter = state.categories.find(
+        category => category.id === state.categoryID
+      );
+      console.log("activeMembersFilter ", activeMembersFilter);
+      return {
+        ...state,
+        activeMembers: activeMembersFilter.activities
       };
 
     default:
