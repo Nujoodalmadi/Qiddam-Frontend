@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
     marginRight: 4,
     borderRadius: 15
   },
+  memberImageModal: {
+    height: 70,
+    width: 70,
+    margin: 10,
+    borderRadius: 35
+  },
   separator: {
     height: 1,
     backgroundColor: "#CCCCCC"
@@ -57,13 +63,24 @@ const styles = StyleSheet.create({
   //////here
   groupMembersContent: {
     flexDirection: "row",
+    maxWidth: 160,
     marginTop: 20,
     borderTopWidth: 1,
     borderTopColor: "white",
-    padding: 3,
+    padding: 10,
     backgroundColor: "rgba(255, 255, 255, 0.9)",
     borderRadius: 50,
-    padding: 10
+    marginLeft: 30
+  },
+  groupMembersContentB: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: "white",
+    padding: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 50
   },
   header: {
     marginTop: 30,
@@ -431,6 +448,47 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
     color: "white"
+  },
+  activeMemberContainer: {
+    borderWidth: 1,
+
+    maxWidth: 100,
+    alignItems: "center",
+    margin: 5,
+    borderRadius: 15,
+    borderColor: "grey",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22
+  },
+  activityCount: {
+    width: 45,
+    height: 20,
+    flexDirection: "row",
+
+    borderRadius: 15,
+    backgroundColor: "#8768A6",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  activityCountText: {
+    fontWeight: "bold",
+    color: "white"
+  },
+  activityCountQiddam: {
+    width: 15,
+    height: 15
+  },
+  activityMemberTitle: {
+    alignContent: "center",
+    padding: 5,
+    fontWeight: "bold",
+    color: "grey",
+    fontSize: 15
   }
 });
 

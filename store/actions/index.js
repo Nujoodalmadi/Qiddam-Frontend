@@ -18,7 +18,8 @@ export {
   deleteActivity,
   userActivities,
   catchCategoryID,
-  resetActivityAdd
+  resetActivityAdd,
+  activeMembers
 } from "./activityActions";
 
 // Invite
