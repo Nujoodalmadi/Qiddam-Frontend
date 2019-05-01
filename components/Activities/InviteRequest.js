@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import styles from "./styles";
 import { View, Text, Button } from "native-base";
-import { Divider } from "react-native-elements";
 import ProfileButton from "../Util/ProfileButton";
 import { withNavigation } from "react-navigation";
 
@@ -16,13 +15,14 @@ class InviteRequest extends Component {
     const accept = {
       activity: this.props.invite.activity.id,
       status: "تم القبول",
-      guest: this.props.invite.user
+      guest: this.props.invite.user.user.id
     };
     const decline = {
       activity: this.props.invite.activity.id,
       status: "معليش، اكتفينا",
-      guest: this.props.invite.user
+      guest: this.props.invite.user.user.id
     };
+
     if (this.props.invite.status === "في انتظار الرد") {
       return (
         <View style={styles.acceptDeclineContainer}>
