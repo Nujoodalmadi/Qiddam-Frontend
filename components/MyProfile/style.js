@@ -11,6 +11,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flex: 1
   },
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    width: null,
+    flexDirection: "column",
+    justifyContent: "center"
+  },
   avatar: {
     width: 130,
     height: 130,

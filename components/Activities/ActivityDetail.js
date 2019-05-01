@@ -18,19 +18,7 @@ class ActivityDetail extends Component {
         style={styles.catHeader}
         source={require("../../img/header2.png")}
       />
-    ),
-
-    title: "عنوان؟",
-    headerStyle: {
-      height: 50,
-
-      borderBottomColor: "transparent",
-      borderBottomWidth: 0
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
+    )
   };
 
   handlePress = async invite => {
@@ -73,7 +61,9 @@ class ActivityDetail extends Component {
             </View>
             <View style={styles.postContent}>
               <View style={styles.postContentSub}>
-                <Text>{this.props.activity.description}</Text>
+                <Text style={styles.activityMemberTitle}>
+                  {this.props.activity.description}
+                </Text>
               </View>
 
               <Text style={styles.date}>العدد المطلوب</Text>
@@ -92,6 +82,7 @@ class ActivityDetail extends Component {
                   this.props.activity.orgnizer.user.id && (
                   <ProfileButton
                     name={this.props.activity.orgnizer.user.username}
+                    style={styles.profile}
                     img={this.props.activity.orgnizer.img}
                     onProfileClick={() =>
                       this.props.fetchProfile(
@@ -133,7 +124,7 @@ class ActivityDetail extends Component {
             />
             {this.props.activity.invites && (
               <View style={styles.postContentSub}>
-                <Text>من يبي يجي معاي؟</Text>
+                <Text style={styles.date}>من يبي يجي معاي؟</Text>
                 {invites}
               </View>
             )}

@@ -7,11 +7,9 @@ import MyActivities from "../MyProfile/MyActivities";
 
 class Profile extends Component {
   static navigationOptions = {
-    header: null
+    header: null,
+    headerLeft: null
   };
-  componentDidMount() {
-    // this.props.fetchProfile();
-  }
 
   render() {
     const profile = this.props.profile;

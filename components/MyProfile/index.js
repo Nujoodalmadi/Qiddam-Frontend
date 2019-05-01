@@ -16,8 +16,11 @@ class MyProfile extends Component {
   };
 
   static navigationOptions = {
-    header: null
+    header: null,
+    headerLeft: null
   };
+
+  state = { enableScrollViewScroll: true };
 
   render() {
     const profile = this.props.profile;
@@ -26,64 +29,87 @@ class MyProfile extends Component {
       return <Spinner />;
     } else {
       return (
-        <ScrollView scrollEnabled={false} style={styles.pageView}>
-          <View>
-            <View style={styles.header}>
+        <View
+          style={styles.container}
+          onStartShouldSetResponderCapture={() => {
+            this.setState({ enableScrollViewScroll: true });
+          }}
+        >
+          <ScrollView
+            scrollEnabled={this.state.enableScrollViewScroll}
+            ref={myScroll => (this._myScroll = myScroll)}
+            style={styles.pageView}
+          >
+            <View>
+              <View style={styles.header}>
+                <Image
+                  style={{ width: 420, height: 200 }}
+                  source={require("../../img/header2.png")}
+                />
+              </View>
               <Image
-                style={{ width: 420, height: 200 }}
-                source={require("../../img/header2.png")}
+                style={styles.avatar}
+                source={
+                  profile.img
+                    ? { uri: profile.img }
+                    : {
+                        uri:
+                          "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
+                      }
+                }
               />
             </View>
-            <Image
-              style={styles.avatar}
-              source={
-                profile.img
-                  ? { uri: profile.img }
-                  : {
-                      uri:
-                        "https://www.manufacturingusa.com/sites/manufacturingusa.com/files/default.png"
-                    }
-              }
-            />
-          </View>
 
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text onPress={this.refechProfile} style={styles.name}>
-                {profile.user.username}
-              </Text>
-              <Text style={styles.info}>
-                {profile.user.first_name} {profile.user.last_name}
-              </Text>
-              <Text style={styles.description}>
-                {profile.bio}-{profile.gender}{" "}
-              </Text>
-              <Text style={styles.description}>{profile.date_of_birth}</Text>
+            <View style={styles.body}>
+              <View style={styles.bodyContent}>
+                <Text onPress={this.refechProfile} style={styles.name}>
+                  {profile.user.username}
+                </Text>
+                <Text style={styles.info}>
+                  {profile.user.first_name} {profile.user.last_name}
+                </Text>
+                <Text style={styles.description}>
+                  {profile.bio}-{profile.gender}
+                </Text>
+                <Text style={styles.description}>{profile.date_of_birth}</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.postContent}>
-            <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
-            <View style={styles.flatList}>
-              <InvitesCard />
+            <View
+              style={styles.postContent}
+              onStartShouldSetResponderCapture={() => {
+                this.setState({ enableScrollViewScroll: false });
+                if (
+                  this._myScroll.contentOffset === 0 &&
+                  this.state.enableScrollViewScroll === false
+                ) {
+                  this.setState({ enableScrollViewScroll: true });
+                }
+              }}
+            >
+              <Text style={styles.qiddamWalla}>قِدّام ولّا؟</Text>
+              <View style={styles.flatList}>
+                <InvitesCard />
+              </View>
             </View>
-          </View>
-          <View style={styles.postContent}>
-            <Text style={styles.qiddamWalla}>أنشطتي</Text>
-            <MyActivities activities={this.props.profile.activities} />
-          </View>
-          <TouchableOpacity
-            style={styles.updateButton}
-            onPress={() => this.props.navigation.navigate("ProfileUpdate")}
-          >
-            <Text style={styles.updateButtonText}>تحديث ملفي التعريفي</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.logoutButton}
-            onPress={() => this.props.logout(this.props.navigation)}
-          >
-            <Text style={styles.logoutButtonText}>خروج</Text>
-          </TouchableOpacity>
-        </ScrollView>
+
+            <View style={styles.postContent}>
+              <Text style={styles.qiddamWalla}>أنشطتي</Text>
+              <MyActivities activities={this.props.profile.activities} />
+            </View>
+            <TouchableOpacity
+              style={styles.updateButton}
+              onPress={() => this.props.navigation.navigate("ProfileUpdate")}
+            >
+              <Text style={styles.updateButtonText}>تحديث ملفي التعريفي</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.logoutButton}
+              onPress={() => this.props.logout(this.props.navigation)}
+            >
+              <Text style={styles.logoutButtonText}>خروج</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
       );
     }
   }
