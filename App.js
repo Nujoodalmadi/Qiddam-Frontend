@@ -6,27 +6,25 @@ import AppContainer from "./components/Navigation";
 import SplashScreen from "./components/LandingPage/SplashScreen";
 
 class App extends React.Component {
-  // state = { isLoading: true };
-  // performTimeConsumingTask = async () => {
-  //   return new Promise(resolve =>
-  //     setTimeout(() => {
-  //       resolve("result");
-  //     }, 3000)
-  //   );
-  // };
+  state = { isLoading: true };
+  performTimeConsumingTask = async () => {
+    return new Promise(resolve =>
+      setTimeout(() => {
+        resolve("result");
+      }, 3000)
+    );
+  };
   async componentDidMount() {
-    // Preload data from an external API
-    // Preload data using AsyncStorage
-    // const data = await this.performTimeConsumingTask();
-    // if (data !== null) {
-    //   this.setState({ isLoading: false });
-    // }
+    const data = await this.performTimeConsumingTask();
+    if (data !== null) {
+      this.setState({ isLoading: false });
+    }
   }
 
   render() {
-    // if (this.state.isLoading) {
-    //   return <SplashScreen />;
-    // }
+    if (this.state.isLoading) {
+      return <SplashScreen />;
+    }
     return (
       <Provider store={store}>
         <AppContainer />

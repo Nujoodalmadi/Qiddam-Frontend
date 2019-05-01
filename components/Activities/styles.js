@@ -492,6 +492,7 @@ const styles = StyleSheet.create({
   },
   activeMemberContainer: {
     borderWidth: 1,
+    height: 200,
     maxWidth: 100,
     alignItems: "center",
     margin: 5,
@@ -528,7 +529,8 @@ const styles = StyleSheet.create({
     padding: 5,
     fontWeight: "bold",
     color: "grey",
-    fontSize: 15
+    fontSize: 15,
+    textAlign: "center"
   }
 });
 

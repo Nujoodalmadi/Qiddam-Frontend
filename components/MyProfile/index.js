@@ -30,6 +30,7 @@ class MyProfile extends Component {
     } else {
       return (
         <View
+          style={styles.container}
           onStartShouldSetResponderCapture={() => {
             this.setState({ enableScrollViewScroll: true });
           }}

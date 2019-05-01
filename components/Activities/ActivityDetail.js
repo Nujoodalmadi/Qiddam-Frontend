@@ -61,7 +61,9 @@ class ActivityDetail extends Component {
             </View>
             <View style={styles.postContent}>
               <View style={styles.postContentSub}>
-                <Text>{this.props.activity.description}</Text>
+                <Text style={styles.activityMemberTitle}>
+                  {this.props.activity.description}
+                </Text>
               </View>
 
               <Text style={styles.date}>العدد المطلوب</Text>
