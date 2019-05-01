@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-// import styles from "./style";
-import { View, Text, Card, CardItem, Button } from "native-base";
-import { TextInput, TouchableOpacity, Image, Alert } from "react-native";
+import styles from "./styles";
+import { View, Text, Button } from "native-base";
+import { Divider } from "react-native-elements";
 import ProfileButton from "../Util/ProfileButton";
+import { withNavigation } from "react-navigation";
 
 class InviteRequest extends Component {
   handlePress = async invite => {
@@ -24,23 +25,34 @@ class InviteRequest extends Component {
     };
     if (this.props.invite.status === "في انتظار الرد") {
       return (
-        <View>
-          <Card>
-            <CardItem>
-              <Button onPress={() => this.handlePress(decline)}>
-                <Text>رفض</Text>
-              </Button>
-              <Button onPress={() => this.handlePress(accept)}>
-                <Text>قبول</Text>
-              </Button>
-            </CardItem>
-            <CardItem bordered>
-              <ProfileButton
-                name={this.props.invite.user.user.username}
-                img={this.props.invite.user.img}
-              />
-            </CardItem>
-          </Card>
+        <View style={styles.acceptDeclineContainer}>
+          <View style={styles.acceptDeclineButtonContainer}>
+            <Button
+              style={styles.declineButton}
+              onPress={() => this.handlePress(decline)}
+            >
+              <Text style={styles.shareButtonText}>رفض</Text>
+            </Button>
+            <Button
+              style={styles.acceptButton}
+              onPress={() => this.handlePress(accept)}
+            >
+              <Text style={styles.shareButtonText}>قبول</Text>
+            </Button>
+          </View>
+
+          <ProfileButton
+            onProfileClick={() =>
+              this.props.fetchProfile(
+                this.props.invite.user.user.id,
+
+                this.props.navigation
+              )
+            }
+            name={this.props.invite.user.user.username}
+            img={this.props.invite.user.img}
+            style={styles.acceptDeclineProfile}
+          />
         </View>
       );
     } else {
@@ -57,7 +69,9 @@ const mapDispatchToProps = dispatch => ({
   fetchProfile: (profileID, navigation) =>
     dispatch(actionCreators.fetchProfile(profileID, navigation))
 });
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(InviteRequest);
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(InviteRequest)
+);

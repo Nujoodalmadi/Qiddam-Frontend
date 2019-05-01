@@ -20,14 +20,15 @@ class ActivitiesList extends Component {
       />
     ),
 
-    title: "عنوان؟",
+    title: "الأنشطة",
+    headerLeft: null,
     headerStyle: {
       height: 50,
 
       borderBottomColor: "transparent",
       borderBottomWidth: 0
     },
-    headerTintColor: "#fff",
+    headerTintColor: "#D9663D",
     headerTitleStyle: {
       fontWeight: "bold"
     }

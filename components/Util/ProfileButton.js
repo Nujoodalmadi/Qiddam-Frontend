@@ -6,7 +6,7 @@ class ProfileButton extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onProfileClick}>
-        <View style={styles.profile}>
+        <View style={this.props.style}>
           <Image
             style={styles.avatar}
             source={
