@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   profile: null,
   myprofile: null,
+  response: null,
   error: null
 };
 
@@ -24,6 +25,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         myprofile: action.payload
+      };
+    case actionTypes.UPDATE_PROFILE:
+      return {
+        ...state,
+        response: action.payload
       };
     case actionTypes.ERROR:
       return {

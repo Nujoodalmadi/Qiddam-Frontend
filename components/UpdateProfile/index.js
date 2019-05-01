@@ -7,10 +7,11 @@ import {
   ScrollView,
   View,
   TextInput,
-  Text
+  Text,
+  ImageBackground
 } from "react-native";
-import { Form } from "native-base";
-import styles from "../UpdateProfile/style";
+import { Form, Input, Item } from "native-base";
+import styles from "../UpdateProfile/styles";
 
 class UpdateProfile extends Component {
   state = {
@@ -40,62 +41,72 @@ class UpdateProfile extends Component {
   }
 
   static navigationOptions = {
-    title: "Profile",
     header: null
   };
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: "white" }}>
         <View>
           <View style={styles.header}>
             <Image
               style={{ width: 420, height: 200 }}
-              source={require("../../img/header2.png")}
+              source={require("../../img/header.png")}
             />
           </View>
         </View>
-        <View style={styles.body}>
-          <Form style={styles.form}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.inputs}
+        <View style={styles.addContent}>
+          <Form>
+            <Item rounded style={styles.item}>
+              <Input
+                style={styles.input}
                 value={this.state.first_name}
                 autoCapitalize="none"
                 onChangeText={first_name => this.setState({ first_name })}
               />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                // style={styles.inputs}
-
+            </Item>
+            <Item rounded style={styles.item}>
+              <Input
+                style={styles.input}
                 value={this.state.last_name}
                 autoCapitalize="none"
                 onChangeText={last_name => this.setState({ last_name })}
               />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
+            </Item>
+
+            <Item rounded style={styles.item}>
+              <Input
+                style={styles.input}
                 value={this.state.email}
                 autoCapitalize="none"
                 onChangeText={email => this.setState({ email })}
               />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                value={this.state.bio}
+            </Item>
+            <Item rounded style={styles.item}>
+              <Input
+                style={styles.input}
+                value={this.state.last_name}
                 autoCapitalize="none"
+                onChangeText={last_name => this.setState({ last_name })}
+              />
+            </Item>
+            <Item rounded style={styles.itemLarge}>
+              <Input
+                style={styles.input}
+                autoCorrect={false}
+                autoCapitalize="none"
+                value={this.state.bio}
                 onChangeText={bio => this.setState({ bio })}
               />
-            </View>
-
+            </Item>
             <TouchableOpacity
               style={[styles.buttonContainer, styles.updateButton]}
               onPress={() =>
                 this.props.UpdateProfile(this.state, this.props.navigation)
               }
             >
-              <Text tyle={styles.updateButtonText}>update</Text>
+              <Text style={styles.updateButtonText}>تحديث</Text>
             </TouchableOpacity>
+            <View />
           </Form>
         </View>
       </ScrollView>

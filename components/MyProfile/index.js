@@ -59,12 +59,6 @@ class MyProfile extends Component {
                 {profile.bio}-{profile.gender}{" "}
               </Text>
               <Text style={styles.description}>{profile.date_of_birth}</Text>
-              {/* <Button
-              onPress={() => alert("HElloo.. am the update button")}
-              title="Update"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            /> */}
             </View>
           </View>
           <View style={styles.postContent}>
@@ -77,6 +71,12 @@ class MyProfile extends Component {
             <Text style={styles.qiddamWalla}>أنشطتي</Text>
             <MyActivities activities={this.props.profile.activities} />
           </View>
+          <TouchableOpacity
+            style={styles.updateButton}
+            onPress={() => this.props.navigation.navigate("ProfileUpdate")}
+          >
+            <Text style={styles.updateButtonText}>تحديث ملفي التعريفي</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.logoutButton}
             onPress={() => this.props.logout(this.props.navigation)}

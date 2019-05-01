@@ -5,7 +5,8 @@ export {
   signup,
   checkForExpiredToken,
   fetchProfile,
-  fetchMyProfile
+  fetchMyProfile,
+  updateProfile
 } from "./authActions";
 
 // Activities

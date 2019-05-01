@@ -5,6 +5,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 //Profile
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const FETCH_MY_PROFILE = "FETCH_MY_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
 //Activities
 export const FETCH_ACTIVITIES = "FETCH_ACTIVITIES";

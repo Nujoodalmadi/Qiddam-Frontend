@@ -1,115 +1,137 @@
 import { StyleSheet } from "react-native";
 
-const resizeMode = "cover";
+import img from "../../img/profile.png";
+
+const resizeMode = "center";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgb(184, 224, 224)"
-  },
-  inputContainer: {
-    borderBottomColor: "#F5FCFF",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    width: 300,
-    height: 45,
-    marginBottom: 20,
-    flexDirection: "row",
-    alignItems: "center",
-
-    shadowColor: "#808080",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5
-  },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: "#FFFFFF",
+  header: {
+    backgroundColor: "white",
+    height: "100%",
+    alignSelf: "center",
     flex: 1
   },
-  inputIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    justifyContent: "center"
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 5,
+    borderColor: "white",
+    marginBottom: 10,
+    alignSelf: "center",
+    position: "absolute",
+    marginTop: 130
+  },
+
+  body: {
+    marginTop: 70
+  },
+  bodyContent: {
+    flex: 1,
+    alignItems: "center",
+    padding: 10
+  },
+  name: {
+    fontSize: 28,
+    color: "#696969",
+    fontWeight: "600"
+  },
+  info: {
+    fontSize: 16,
+    color: "black",
+    marginTop: 4
+  },
+  description: {
+    fontSize: 16,
+    color: "#696969",
+    marginTop: 10,
+    textAlign: "center"
   },
   buttonContainer: {
+    marginTop: 10,
     height: 45,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    width: 100,
+    width: 250,
     borderRadius: 30,
-    backgroundColor: "transparent"
+    backgroundColor: "#00BFFF"
   },
-
-  loginButton: {
-    backgroundColor: "rgb(217,102,61)",
-
-    shadowColor: "#808080",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    }
+  inviteCard: {
+    alignSelf: "center",
+    width: "90%",
+    marginBottom: 1
   },
-  loginText: {
-    color: "white"
+  pageView: {
+    backgroundColor: "white"
   },
-  bgImage: {
-    flex: 1,
-    resizeMode,
-
-    width: "100%",
-    height: "100%",
-    justifyContent: "center"
+  qiddam: {
+    width: 30,
+    height: 30
   },
-  btnText: {
-    color: "#F2CA50",
+  qiddamWalla: {
+    fontSize: 20,
+    color: "#D9663D",
+    textAlign: "right",
+    marginRight: 14,
     fontWeight: "bold"
   },
-  textByRegister: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
+
+  flatList: {
+    maxHeight: 200
   },
-  gender: {
-    justifyContent: "space-around",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 30,
-    width: 100,
-    height: 45,
-    marginBottom: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    shadowColor: "#808080",
+  listItem: {
+    marginBottom: 5,
+    borderRadius: 20,
+    backgroundColor: "#efefef"
+  },
+
+  postContent: {
+    flex: 1,
+    padding: 5,
+    flexDirection: "column",
+    backgroundColor: "#efefef",
+    alignSelf: "center",
+    width: 350,
+    maxHeight: 180,
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  title: {
+    fontSize: 20,
+    color: "#696969",
+    fontWeight: "500"
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#696969"
+  },
+  itemContainer: {
+    borderRadius: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    marginBottom: 5
+  },
+  logoutButton: {
+    borderRadius: 20,
+    width: 60,
+    alignSelf: "center",
+    backgroundColor: "rgba(242, 202, 80, 1)",
+    shadowColor: "#8768A6",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 3
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
 
-    elevation: 5
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22
   },
-
-  dateIcon: {
-    position: "absolute",
-    left: 0,
-    top: 4,
-    marginLeft: 0
-  },
-  dateInput: {
-    borderWidth: 0
+  logoutButtonText: {
+    textAlign: "center",
+    fontSize: 15,
+    padding: 5,
+    color: "white"
   },
   updateButton: {
     borderRadius: 20,
@@ -121,6 +143,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3
     },
+
     shadowOpacity: 0.22,
     shadowRadius: 2.22
   },
@@ -129,6 +152,38 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 5,
     color: "white"
+  },
+  form: {
+    maxHeight: 100,
+    backgroundColor: "white"
+  },
+  addContent: {
+    flex: 1,
+    padding: 10,
+    flexDirection: "column",
+    backgroundColor: "white",
+    alignSelf: "center",
+    width: 360,
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 10
+  },
+
+  item: {
+    maxHeight: 40,
+    flex: 1,
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#f7f7f7",
+    marginBottom: 10
+  },
+  itemLarge: {
+    height: 160,
+    flex: 1,
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#f7f7f7",
+    marginBottom: 10
   }
 });
 

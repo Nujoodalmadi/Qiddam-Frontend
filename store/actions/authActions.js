@@ -123,7 +123,25 @@ export const fetchProfile = (profileID, navigation) => {
     }
   };
 };
-
+export const updateProfile = (profile, navigation) => {
+  return async dispatch => {
+    try {
+      const res = await axios.put(
+        "http://127.0.0.1:8000/api/profile/update/",
+        profile
+      );
+      const response = res.data;
+      dispatch({
+        type: actionTypes.UPDATE_PROFILE,
+        payload: response
+      });
+      await dispatch(fetchMyProfile());
+      navigation.navigate("MyProfile");
+    } catch (error) {
+      console.error("Someting what wrong", error);
+    }
+  };
+};
 // export const error = error => ({
 //   type: actionTypes.ERROR,
 //   payload: error

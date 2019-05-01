@@ -131,6 +131,27 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 5,
     color: "white"
+  },
+  updateButton: {
+    borderRadius: 20,
+    width: 180,
+    marginBottom: 10,
+    alignSelf: "center",
+    backgroundColor: "rgba(242, 202, 80, 1)",
+    shadowColor: "#8768A6",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22
+  },
+  updateButtonText: {
+    textAlign: "center",
+    fontSize: 15,
+    padding: 5,
+    color: "white"
   }
 });
 
