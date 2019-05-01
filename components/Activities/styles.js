@@ -75,12 +75,35 @@ const styles = StyleSheet.create({
   groupMembersContentB: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     marginTop: 20,
+    minWidth: 300,
     borderTopWidth: 1,
     borderTopColor: "white",
-    padding: 10,
+    padding: 20,
     backgroundColor: "rgba(255, 255, 255, 0.9)",
-    borderRadius: 50
+    borderRadius: 40
+  },
+  acceptDeclineButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 5
+  },
+  acceptDeclineProfile: {
+    flexDirection: "row",
+    borderWidth: 1,
+    borderRadius: 25,
+    borderColor: "grey"
+  },
+  acceptDeclineContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    borderTopWidth: 1,
+    borderTopColor: "white",
+    padding: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 50,
+    marginBottom: 10
   },
   header: {
     marginTop: 30,
@@ -176,7 +199,7 @@ const styles = StyleSheet.create({
   },
   profile: {
     flexDirection: "row",
-    marginTop: 20,
+    marginTop: 10,
     borderWidth: 3,
     borderRadius: 25,
     borderColor: "white"
@@ -206,6 +229,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9663D",
     borderRadius: 30,
     alignSelf: "center"
+  },
+  acceptButton: {
+    marginLeft: 10,
+    height: 50,
+    minWidth: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#D9663D",
+    borderRadius: 30
+  },
+  declineButton: {
+    height: 50,
+    minWidth: 50,
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#D9663D",
+    borderRadius: 30
   },
   shareButtonText: {
     color: "white",
@@ -451,11 +492,10 @@ const styles = StyleSheet.create({
   },
   activeMemberContainer: {
     borderWidth: 1,
-
     maxWidth: 100,
     alignItems: "center",
     margin: 5,
-    borderRadius: 15,
+    borderRadius: 20,
     borderColor: "grey",
     shadowColor: "#000",
     shadowOffset: {

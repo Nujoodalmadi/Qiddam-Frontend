@@ -44,7 +44,7 @@ const activities = (state = initialState, action) => {
       let activeMembersFilter = state.categories.find(
         category => category.id === state.categoryID
       );
-      console.log("activeMembersFilter ", activeMembersFilter);
+
       return {
         ...state,
         activeMembers: activeMembersFilter.activities

@@ -29,13 +29,13 @@ class Categories extends Component {
       />
     ),
     headerLeft: null,
-    title: "عنوان؟",
+
     headerStyle: {
       height: 200,
       borderBottomColor: "transparent",
       borderBottomWidth: 0
     },
-    headerTintColor: "#fff",
+    headerTintColor: "#D9663D",
     headerTitleStyle: {
       fontWeight: "bold"
     }

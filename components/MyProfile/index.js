@@ -16,7 +16,8 @@ class MyProfile extends Component {
   };
 
   static navigationOptions = {
-    header: null
+    header: null,
+    headerLeft: null
   };
 
   render() {
@@ -47,19 +48,19 @@ class MyProfile extends Component {
             />
           </View>
 
-        <View style={styles.body}>
-          <View style={styles.bodyContent}>
-            <Text onPress={this.refechProfile} style={styles.name}>
-              {profile.user.username}
-            </Text>
-            <Text style={styles.info}>
-              {profile.user.first_name} {profile.user.last_name}
-            </Text>
-            <Text style={styles.description}>
-              {profile.bio}-{profile.gender}
-            </Text>
-            <Text style={styles.description}>{profile.date_of_birth}</Text>
-            {/* <Button
+          <View style={styles.body}>
+            <View style={styles.bodyContent}>
+              <Text onPress={this.refechProfile} style={styles.name}>
+                {profile.user.username}
+              </Text>
+              <Text style={styles.info}>
+                {profile.user.first_name} {profile.user.last_name}
+              </Text>
+              <Text style={styles.description}>
+                {profile.bio}-{profile.gender}
+              </Text>
+              <Text style={styles.description}>{profile.date_of_birth}</Text>
+              {/* <Button
 
               onPress={() => alert("HElloo.. am the update button")}
               title="Update"

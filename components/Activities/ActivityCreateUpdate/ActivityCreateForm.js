@@ -38,13 +38,14 @@ class ActivityCreateForm extends Component {
       />
     ),
 
-    title: "عنوان؟",
+    title: "نشاط جديد",
+    headerLeft: null,
     headerStyle: {
       height: 200,
       borderBottomColor: "transparent",
       borderBottomWidth: 0
     },
-    headerTintColor: "#fff",
+    headerTintColor: "#D9663D",
     headerTitleStyle: {
       fontWeight: "bold"
     }
@@ -57,10 +58,19 @@ class ActivityCreateForm extends Component {
           <Text style={styles.shareButtonText}>تحديث</Text>
         </Button>
       );
-    } else {
+    } else if (this.props.user) {
       return (
         <Button onPress={this.handleCreate} style={styles.shareButton}>
           <Text style={styles.shareButtonText}>انشر الدعوة</Text>
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          onPress={() => this.props.navigation.navigate("Login")}
+          style={styles.shareButton}
+        >
+          <Text style={styles.shareButtonText}> سجل دخولك لنشر الدعوة</Text>
         </Button>
       );
     }
@@ -204,7 +214,8 @@ class ActivityCreateForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.activityReducer.categories
+    categories: state.activityReducer.categories,
+    user: state.authReducer.user
   };
 };
 const mapDispatchToProps = dispatch => ({
